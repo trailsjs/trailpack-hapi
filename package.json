@@ -1,0 +1,25 @@
+{
+  "name": "trailpack-hapi",
+  "version": "0.0.0",
+  "description": ":package: Hapi.js Trailpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trailsjs/trailpack-hapi.git"
+  },
+  "keywords": [
+    "trails",
+    "trailsjs",
+    "hapi",
+    "hapijs"
+  ],
+  "author": "Travis Webb <me@traviswebb.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trailsjs/trailpack-hapi/issues"
+  },
+  "homepage": "https://github.com/trailsjs/trailpack-hapi#readme"
+}
