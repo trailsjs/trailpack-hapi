@@ -23,6 +23,9 @@
   },
   "homepage": "https://github.com/trailsjs/trailpack-hapi#readme",
   "dependencies": {
-    "hapi": "^11.1.2"
+    "hapi": "^11.1.2",
+    "hoek": "^3.0.4",
+    "joi": "^7.0.1",
+    "lodash": "^3.10.1"
   }
 }

@@ -1,0 +1,1 @@
+exports.FootprintPolicy = require('./FootprintPolicy')
