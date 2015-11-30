@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/trailsjs/trailpack-hapi/issues"
   },
-  "homepage": "https://github.com/trailsjs/trailpack-hapi#readme"
+  "homepage": "https://github.com/trailsjs/trailpack-hapi#readme",
+  "dependencies": {
+    "hapi": "^11.1.2"
+  }
 }

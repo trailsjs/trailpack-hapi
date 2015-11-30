@@ -11,4 +11,12 @@ const _ = require('lodash')
  */
 module.exports = class Hapi extends Trailpack {
 
+  constructor (app, config) {
+    super(app, require('./config'), require('./api'))
+  }
+
+  initialize () {
+
+  }
+
 }
