@@ -1,7 +1,7 @@
 {
   "name": "trailpack-hapi",
   "version": "0.0.0",
-  "description": ":package: Hapi.js Trailpack",
+  "description": "Hapi.js Trailpack. This pack binds the routes compiled in trailpack-router to a Hapi Server.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,9 @@
     "trails",
     "trailsjs",
     "hapi",
-    "hapijs"
+    "hapijs",
+    "server",
+    "trailpack"
   ],
   "author": "Travis Webb <me@traviswebb.com>",
   "license": "MIT",
