@@ -19,15 +19,15 @@ module.exports = class Hapi extends Trailpack {
   }
 
   /**
-   * Ensure that config/server is valid, and that no other competing web
+   * Ensure that config/web is valid, and that no other competing web
    * server trailpacks are installed (e.g. express)
    */
   validate () {
-    if (this.config.server.engine != 'hapi') {
-      return Promise.reject('To load trailpack-hapi, the server engine must be set to "hapi"')
+    if (this.config.web.server !== 'hapi') {
+      return Promise.reject(new Error('config.web.server is not set to "hapi"'))
     }
     if (_.contains(_.keys(this.app.packs), 'express4', 'koa', 'koa2', 'restify')) {
-      return Promise.reject('There is another web services trailpack installed that conflicts with trailpack-hapi!')
+      return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
     }
 
     return Promise.resolve()
@@ -37,10 +37,10 @@ module.exports = class Hapi extends Trailpack {
    * Start Hapi Server
    */
   initialize () {
-    const server = lib.Server.createServer(this.config.server)
+    const server = lib.Server.createServer(this.config.web)
 
-    lib.Server.registerMethods(this.app.routes, this.app.api, server)
-    lib.Server.registerRoutes(this.app.routes, server)
+    lib.Server.registerMethods(this.app, server)
+    lib.Server.registerRoutes(this.app, server)
 
     return lib.Server.start(server)
   }
