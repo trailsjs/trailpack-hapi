@@ -6,6 +6,9 @@ const _ = require('lodash')
 
 /**
  * Hapi Trailpack
+ *
+ * @class Hapi
+ * @see {@link http://trailsjs.io/doc/trailpack
  * 
  * Bind application routes to Hapi.js (from trailpack-router)
  */
