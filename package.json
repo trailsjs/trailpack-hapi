@@ -27,5 +27,12 @@
     "hoek": "^3.0.4",
     "joi": "^7.0.1",
     "lodash": "^3.10.1"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "mocha": true,
+      "node": true
+    }
   }
 }
