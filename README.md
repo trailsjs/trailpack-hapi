@@ -1,5 +1,6 @@
 # trailpack-hapi
 
+[![Gitter][gitter-image]][gitter-url]
 [![NPM version][npm-image]][npm-url]
 [![Build status][ci-image]][ci-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
@@ -51,3 +52,6 @@ please keep the following in mind:
 [daviddm-url]: https://david-dm.org/trailsjs/trailpack-hapi
 [codeclimate-image]: https://img.shields.io/codeclimate/github/trailsjs/trailpack-hapi.svg?style=flat-square
 [codeclimate-url]: https://codeclimate.com/github/trailsjs/trailpack-hapi
+[gitter-image]: http://img.shields.io/badge/+%20GITTER-JOIN%20CHAT%20%E2%86%92-1DCE73.svg?style=flat-square
+[gitter-url]: https://gitter.im/trailsjs/trails
+
