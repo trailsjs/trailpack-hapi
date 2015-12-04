@@ -4,7 +4,7 @@
   "description": "Hapi.js Trailpack. This pack binds the routes compiled in trailpack-router to a Hapi Server.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint . && mocha"
   },
   "repository": {
     "type": "git",
@@ -32,10 +32,11 @@
     "trailpack": "0.0.2"
   },
   "eslintConfig": {
-    "env": {
-      "es6": true,
-      "mocha": true,
-      "node": true
-    }
+    "extends": "trails"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-trails": "0.0.9",
+    "mocha": "^2.3.4"
   }
 }
