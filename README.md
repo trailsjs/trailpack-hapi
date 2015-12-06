@@ -24,6 +24,18 @@ module.exports = {
 }
 ```
 
+## View Config
+Choose a template engine.
+
+```js
+// config/views.js
+module.exports = {
+  engine: 'handlebars'
+}
+```
+
+Then simply write your views in a directory called 'templates'!
+
 ## Configuration
 See [`config/web.js`](https://github.com/trailsjs/trails-example-app/blob/master/config/web.js) for an example.
 
