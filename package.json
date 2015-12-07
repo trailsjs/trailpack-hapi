@@ -29,7 +29,8 @@
     "hoek": "^3.0.4",
     "joi": "^7.0.1",
     "lodash": "^3.10.1",
-    "trailpack": "0.0.2"
+    "trailpack": "0.0.2",
+    "vision": "^4.0.1"
   },
   "eslintConfig": {
     "extends": "trails"
