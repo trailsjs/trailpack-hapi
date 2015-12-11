@@ -14,16 +14,12 @@ const _ = require('lodash')
  */
 module.exports = class Hapi extends Trailpack {
 
-  constructor (app, config) {
-    super(app, require('./config'), require('./api'))
-  }
-
   /**
    * Ensure that config/web is valid, and that no other competing web
    * server trailpacks are installed (e.g. express)
    */
   validate () {
-    if (this.config.web.server !== 'hapi') {
+    if (this.app.config.web.server !== 'hapi') {
       return Promise.reject(new Error('config.web.server is not set to "hapi"'))
     }
     if (_.contains(_.keys(this.app.packs), 'express4', 'koa', 'koa2', 'restify')) {
@@ -37,11 +33,21 @@ module.exports = class Hapi extends Trailpack {
    * Start Hapi Server
    */
   initialize () {
-    const server = lib.Server.createServer(this.config.web)
+    const server = lib.Server.createServer(this.app.config.web)
 
     lib.Server.registerMethods(this.app, server)
     lib.Server.registerRoutes(this.app, server)
 
     return lib.Server.start(server)
   }
+
+  constructor (app, config) {
+    super(app, {
+      config: require('./config'),
+      api: require('./api'),
+      pkg: require('./package')
+    })
+  }
+
 }
+

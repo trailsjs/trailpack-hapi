@@ -5,10 +5,6 @@
  * modified by this trailpack.
  */
 module.exports = {
-
-  pkg: require('../package'),
-
-  provides: { },
-  modifies: { }
+  provides: { }
 }
 
