@@ -37,6 +37,7 @@ module.exports = class Hapi extends Trailpack {
 
     lib.Server.registerMethods(this.app, server)
     lib.Server.registerRoutes(this.app, server)
+    lib.Server.registerViews(this.app, server)
 
     return lib.Server.start(server)
   }
