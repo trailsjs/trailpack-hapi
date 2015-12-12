@@ -46,6 +46,5 @@ module.exports = class Hapi extends Trailpack {
       pkg: require('./package')
     })
   }
-
 }
 
