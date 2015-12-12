@@ -19,9 +19,6 @@ module.exports = class Hapi extends Trailpack {
    * server trailpacks are installed (e.g. express)
    */
   validate () {
-    if (this.app.config.web.server !== 'hapi') {
-      return Promise.reject(new Error('config.web.server is not set to "hapi"'))
-    }
     if (_.contains(_.keys(this.app.packs), 'express4', 'koa', 'koa2', 'restify')) {
       return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
     }
