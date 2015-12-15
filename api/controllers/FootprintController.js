@@ -2,15 +2,18 @@
 
 /**
  * Footprint Controller
+ *
+ * Parse the path and query params and forward them to the FootprintService.
+ * The FootprintService is provided by any ORM trailpack, e.g.
+ * trailpack-waterline, trailpack-sequelize, etc.
+ *
+ * @see {@link http://hapijs.com/api#request-object}
  */
 module.exports = {
   create (request, reply) {
 
   },
   find (request, reply) {
-
-  },
-  findOne (request, reply) {
 
   },
   update (request, reply) {
@@ -23,9 +26,6 @@ module.exports = {
 
   },
   findAssociation (request, reply) {
-
-  },
-  findOneAssociation (request, reply) {
 
   },
   updateAssociation (request, reply) {
