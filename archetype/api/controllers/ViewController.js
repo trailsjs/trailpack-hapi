@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
 module.exports = {
 
   helloWorld (request, reply) {
-    reply('Hello Trails.js !');
+    reply('Hello Trails.js !')
   }
 }

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @module DefaultController
@@ -17,6 +17,6 @@ module.exports = {
   },
 
   catchAll (request, reply) {
-    reply('<h1>This is the wrong trail</h1>');
+    reply('<h1>This is the wrong trail</h1>')
   }
 }
