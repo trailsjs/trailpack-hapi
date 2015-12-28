@@ -17,7 +17,6 @@ module.exports = _.defaultsDeep({
         }
       },
       Role: {
-        store: 'storeoverride',
         attributes: {
           name: 'string',
           user: {
