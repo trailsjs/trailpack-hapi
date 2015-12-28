@@ -1,8 +1,8 @@
 'use strict'
 
+const _ = require('lodash')
 const Trailpack = require('trailpack')
 const lib = require('./lib')
-const _ = require('lodash')
 
 /**
  * Hapi Trailpack
@@ -23,7 +23,9 @@ module.exports = class Hapi extends Trailpack {
       return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
     }
 
-    return Promise.resolve()
+    return Promise.all([
+      lib.Validator.validateWebConfig(this.app.config.web)
+    ])
   }
 
   /**

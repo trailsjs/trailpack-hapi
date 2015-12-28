@@ -32,7 +32,9 @@ module.exports = _.defaultsDeep({
       packs: [
         smokesignals.Trailpack,
         require('trailpack-core'),
-        require('../') // trailpack-waterline
+        require('trailpack-router'),
+        require('trailpack-waterline'),
+        require('../') // trailpack-hapi
       ]
     },
     database: {
@@ -45,6 +47,13 @@ module.exports = _.defaultsDeep({
         defaultStore: 'teststore',
         migrate: 'drop'
       }
+    },
+    web: {
+      port: 3000,
+      host: 'localhost'
+    },
+    views: {
+
     }
   }
 }, smokesignals.FailsafeConfig)

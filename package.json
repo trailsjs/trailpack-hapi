@@ -27,7 +27,7 @@
   "dependencies": {
     "hapi": "^11.1.2",
     "hoek": "^3.0.4",
-    "joi": "^7.0.1",
+    "joi": "^7.1.0",
     "lodash": "^3.10.1",
     "trailpack": "latest",
     "vision": "^4.0.1"
@@ -41,6 +41,7 @@
     "mocha": "^2.3.4",
     "smokesignals": "0.0.8",
     "trailpack-core": "0.0.12",
+    "trailpack-router": "0.0.11",
     "trails": "0.0.14",
     "waterline-sqlite3": "^0.12.4"
   }
