@@ -32,14 +32,14 @@ module.exports = class Hapi extends Trailpack {
    * Start Hapi Server
    */
   initialize () {
-    const server = lib.Server.createServer(this.app.config)
+    this.server = lib.Server.createServer(this.app.config)
 
-    lib.Server.registerPlugins(this.app, server)
-    lib.Server.registerMethods(this.app, server)
-    lib.Server.registerRoutes(this.app, server)
-    lib.Server.registerViews(this.app, server)
+    lib.Server.registerPlugins(this.app, this.server)
+    lib.Server.registerMethods(this.app, this.server)
+    lib.Server.registerRoutes(this.app, this.server)
+    lib.Server.registerViews(this.app, this.server)
 
-    return lib.Server.start(server)
+    return lib.Server.start(this.server)
   }
 
   constructor (app, config) {
