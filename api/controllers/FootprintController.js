@@ -1,5 +1,3 @@
-//const _ = require('lodash')
-
 /**
  * Footprint Controller
  *
@@ -11,27 +9,35 @@
  */
 module.exports = {
   create (request, reply) {
-
+    const FootprintService = this.api.services.FootprintService
+    reply(FootprintService.create(request.params.model, request.payload))
   },
   find (request, reply) {
+    const FootprintService = this.api.services.FootprintService
 
   },
   update (request, reply) {
+    const FootprintService = this.api.services.FootprintService
 
   },
   destroy (request, reply) {
+    const FootprintService = this.api.services.FootprintService
 
   },
   createAssociation (request, reply) {
+    const FootprintService = this.api.services.FootprintService
 
   },
   findAssociation (request, reply) {
+    const FootprintService = this.api.services.FootprintService
 
   },
   updateAssociation (request, reply) {
+    const FootprintService = this.api.services.FootprintService
 
   },
   destroyAssociation (request, reply) {
+    const FootprintService = this.api.services.FootprintService
 
   }
 }

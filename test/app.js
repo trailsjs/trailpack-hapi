@@ -1,7 +1,7 @@
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
 
-module.exports = _.defaultsDeep({
+const App = {
   pkg: {
     name: 'hapi-trailpack-test'
   },
@@ -27,15 +27,6 @@ module.exports = _.defaultsDeep({
     }
   },
   config: {
-    main: {
-      packs: [
-        smokesignals.Trailpack,
-        require('trailpack-core'),
-        require('trailpack-router'),
-        require('trailpack-waterline'),
-        require('../') // trailpack-hapi
-      ]
-    },
     database: {
       stores: {
         teststore: {
@@ -47,6 +38,37 @@ module.exports = _.defaultsDeep({
         migrate: 'drop'
       }
     },
+    footprints: {
+      controllers: true,
+      prefix: '',
+      models: {
+        options: {
+          populate: true
+        },
+        actions: {
+          create: true,
+          find: true,
+          update: true,
+          destroy: true,
+          createAssociation: true,
+          findAssociation: true,
+          updateAssociation: true,
+          destroyAssociation: true
+        }
+      }
+    },
+    main: {
+      packs: [
+        smokesignals.Trailpack,
+        require('trailpack-core'),
+        require('trailpack-router'),
+        require('trailpack-waterline'),
+        require('../') // trailpack-hapi
+      ],
+      paths: {
+        root: __dirname + '../'
+      }
+    },
     web: {
       port: 3000,
       host: 'localhost'
@@ -55,5 +77,7 @@ module.exports = _.defaultsDeep({
 
     }
   }
-}, smokesignals.FailsafeConfig)
+}
+_.defaultsDeep(App, smokesignals.FailsafeConfig)
 
+module.exports = App
