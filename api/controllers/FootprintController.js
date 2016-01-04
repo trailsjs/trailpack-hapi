@@ -125,7 +125,7 @@ module.exports = {
     const childAttribute = request.params.childAttribute
     const childId = request.params.childId
 
-    console.log('[FootprintController] (updateAssociation)',
+    this.log.debug('[FootprintController] (updateAssociation)',
       parentModel, parentId, '->', childAttribute, childId,
       'criteria =', request.query)
 
