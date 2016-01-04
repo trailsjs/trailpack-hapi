@@ -1,4 +1,3 @@
-
 /**
  * Footprint Controller
  *
@@ -100,7 +99,7 @@ module.exports = {
     const childAttribute = request.params.childAttribute
     const childId = request.params.childId
 
-    console.log('[FootprintController] (findAssociation)',
+    this.log.debug('[FootprintController] (findAssociation)',
       parentModel, parentId, '->', childAttribute, childId,
       'criteria =', request.query)
 
@@ -121,7 +120,25 @@ module.exports = {
    */
   updateAssociation (request, reply) {
     const FootprintService = this.api.services.FootprintService
+    const parentModel = request.params.parentModel
+    const parentId = request.params.parentId
+    const childAttribute = request.params.childAttribute
+    const childId = request.params.childId
 
+    console.log('[FootprintController] (updateAssociation)',
+      parentModel, parentId, '->', childAttribute, childId,
+      'criteria =', request.query)
+
+    if (childId) {
+      reply(FootprintService.updateAssociation(
+        parentModel, parentId, childAttribute, childId, request.payload, { findOne: true }
+      ))
+    }
+    else {
+      reply(FootprintService.updateAssociation(
+        parentModel, parentId, childAttribute, request.query, request.payload
+      ))
+    }
   },
 
   /**
@@ -132,3 +149,4 @@ module.exports = {
 
   }
 }
+

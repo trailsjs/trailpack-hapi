@@ -205,6 +205,20 @@ describe('FootprintController', () => {
           done(err)
         })
     })
+    it.skip('should find a set of associated records ("many") and populate the parent association', done => {
+      request
+        .get('/user/' + userId + '/roles')
+        .expect(200)
+        .query({
+          populate: [ 'user' ]
+        })
+        .end((err, res) => {
+          const roles = res.body
+          assert(roles.length)
+          assert.equal(roles[0].user.id, userId)
+          done(err)
+        })
+    })
     it('should find a particular record in an associated set ("many")', done => {
       request
         .get('/user/' + userId + '/roles/' + roleId)
@@ -219,11 +233,53 @@ describe('FootprintController', () => {
     })
   })
   describe('#updateAssociation', () => {
-    it('should update an associated record', () => {
+    let userId, roleId
+    beforeEach(done => {
+      request
+        .post('/user')
+        .send({ name: 'updateassociationtest1' })
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err)
 
+          userId = res.body.id
+          request
+            .post('/user/' + userId + '/roles')
+            .send({ name: 'associatedroletest2' })
+            .expect(200)
+            .end((err, res) => {
+              roleId = res.body.id
+              done(err)
+            })
+        })
     })
-    it('should update a set of associated records', () => {
-
+    it('should update an associated record', done => {
+      request
+        .put('/role/' + roleId + '/user')
+        .send({
+          name: 'updateassociationtest2'
+        })
+        .expect(200)
+        .end((err, res) => {
+          const user = res.body
+          assert(user)
+          assert.equal(user.name, 'updateassociationtest2')
+          done(err)
+        })
+    })
+    it('should update a set of associated records', done => {
+      request
+        .put('/user/' + userId + '/roles')
+        .send({
+          name: 'updateassociationtest2'
+        })
+        .expect(200)
+        .end((err, res) => {
+          const roles = res.body
+          assert(roles.length)
+          assert.equal(roles[0].name, 'updateassociationtest2')
+          done(err)
+        })
     })
   })
   describe('#destroyAssociation', () => {
