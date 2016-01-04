@@ -11,6 +11,11 @@ const boom = require('boom')
  * @see http://hapijs.com/api#request-object
  */
 module.exports = {
+
+  /**
+   * Create Policy.
+   * @see FootprintController.create
+   */
   create (request, reply) {
     if (!_.isPlainObject(request.payload)) {
       return reply(boom.preconditionFailed(this.__('errors.footprints.payload')))
@@ -18,25 +23,88 @@ module.exports = {
 
     reply()
   },
+
+  /**
+   * Find Policy.
+   * @see FootprintController.find
+   */
   find (request, reply) {
+    if (request.params.id && !_.isEmpty(request.query)) {
+      return reply(boom.preconditionFailed(this.__('errors.footprints.find.mutex')))
+    }
+
     reply()
   },
+
+  /**
+   * Update Policy.
+   * @see FootprintController.update
+   */
   update (request, reply) {
+    if (request.params.id && !_.isEmpty(request.query)) {
+      return reply(boom.preconditionFailed(this.__('errors.footprints.update.mutex')))
+    }
+
     reply()
   },
+
+  /**
+   * Destroy Policy.
+   * @see FootprintController.destroy
+   */
   destroy (request, reply) {
+    if (request.params.id && !_.isEmpty(request.query)) {
+      return reply(boom.preconditionFailed(this.__('errors.footprints.destroy.mutex')))
+    }
+
     reply()
   },
+
+  /**
+   * Create Association Policy.
+   * @see FootprintController.createAssociation
+   */
   createAssociation (request, reply) {
+    if (!_.isPlainObject(request.payload)) {
+      return reply(boom.preconditionFailed(this.__('errors.footprints.payload')))
+    }
+
     reply()
   },
+
+  /**
+   * Find Association Policy.
+   * @see FootprintController.findAssociation
+   */
   findAssociation (request, reply) {
+    if (request.params.childId && !_.isEmpty(request.query)) {
+      return reply(boom.preconditionFailed(this.__('errors.footprints.find.mutex')))
+    }
+
     reply()
   },
+
+  /**
+   * Update Association Policy.
+   * @see FootprintController.updateAssociation
+   */
   updateAssociation (request, reply) {
+    if (request.params.childId && !_.isEmpty(request.query)) {
+      return reply(boom.preconditionFailed(this.__('errors.footprints.update.mutex')))
+    }
+
     reply()
   },
+
+  /**
+   * Destroy Association Policy.
+   * @see FootprintController.destroyAssociation
+   */
   destroyAssociation (request, reply) {
+    if (request.params.childId && !_.isEmpty(request.query)) {
+      return reply(boom.preconditionFailed(this.__('errors.footprints.destroy.mutex')))
+    }
+
     reply()
   }
 }

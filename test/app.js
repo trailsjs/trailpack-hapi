@@ -9,7 +9,9 @@ const App = {
     models: {
       User: {
         attributes: {
-          name: 'string',
+          name: {
+            type: 'string'
+          },
           roles: {
             collection: 'Role',
             via: 'user'

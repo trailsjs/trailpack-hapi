@@ -4,7 +4,7 @@ const assert = require('assert')
 const supertest = require('supertest')
 
 describe('FootprintController', () => {
-  let request
+  let request, userId
   before(() => {
     request = supertest('http://localhost:3000')
   })
@@ -13,56 +13,216 @@ describe('FootprintController', () => {
     it('should insert a record', done => {
       request
         .post('/user')
-        .send({
-          name: 'createtest1'
-        })
+        .send({ name: 'createtest1' })
         .expect(200)
         .end((err, res) => {
           const user = res.body
-
-          console.log(user)
 
           assert(user)
           assert(user.id)
           assert.equal(user.name, 'createtest1')
 
-          done()
+          userId = user.id
+
+          done(err)
         })
     })
   })
   describe('#find', () => {
-    it('should find a single record', () => {
-
+    it('should find a single record', done => {
+      request
+        .get('/user/' + userId)
+        .expect(200)
+        .end((err, res) => {
+          const user = res.body
+          assert.equal(user.name, 'createtest1')
+          done(err)
+        })
     })
-    it('should find a set of records', () => {
-
+    it('should find a set of records', done => {
+      request
+        .get('/user')
+        .query({ name: 'createtest1' })
+        .expect(200)
+        .end((err, res) => {
+          const user = res.body[0]
+          assert.equal(user.name, 'createtest1')
+          done(err)
+        })
     })
+
+    it.skip('TODO should find using "lessThan" query criterion')
+    it.skip('TODO should find using "greaterThan" query criterion')
+    it.skip('TODO should find using "in" query criterion')
+    it.skip('TODO should find using "limit" query option')
+    it.skip('TODO should find using "offset" query option')
+    it.skip('TODO should find using Date type')
   })
   describe('#update', () => {
-    it('should update a single record', () => {
-
+    let userId
+    beforeEach(done => {
+      request
+        .post('/user')
+        .send({ name: 'updatetest1' })
+        .expect(200)
+        .end((err, res) => {
+          assert.equal(res.body.name, 'updatetest1')
+          userId = res.body.id
+          done(err)
+        })
     })
-    it('should update a set of records', () => {
-
+    it('should update a single record', done => {
+      request
+        .put('/user/' + userId)
+        .send({ name: 'updatetest2' })
+        .expect(200)
+        .end((err, res) => {
+          const user = res.body
+          assert.equal(user.id, userId)
+          assert.equal(user.name, 'updatetest2')
+          done(err)
+        })
+    })
+    it('should update a set of records', done => {
+      request
+        .put('/user')
+        .query({ name: 'updatetest1' })
+        .send({ name: 'updatetest2' })
+        .expect(200)
+        .end((err, res) => {
+          const user = res.body[0]
+          assert.equal(user.id, userId)
+          assert.equal(user.name, 'updatetest2')
+          done(err)
+        })
     })
   })
   describe('#destroy', () => {
-    it('should destroy a set of records', () => {
-
+    let userId
+    beforeEach(done => {
+      request
+        .post('/user')
+        .send({ name: 'destroytest1' })
+        .expect(200)
+        .end((err, res) => {
+          assert.equal(res.body.name, 'destroytest1')
+          userId = res.body.id
+          done(err)
+        })
+    })
+    it('should destroy a single record', done => {
+      request
+        .del('/user/' + userId)
+        .expect(200)
+        .end((err, res) => {
+          const user = res.body
+          assert.equal(user.id, userId)
+          assert.equal(user.name, 'destroytest1')
+          done(err)
+        })
+    })
+    it('should destroy a set of records', done => {
+      request
+        .del('/user')
+        .query({ name: 'destroytest1' })
+        .expect(200)
+        .end((err, res) => {
+          const user = res.body[0]
+          assert.equal(user.id, userId)
+          assert.equal(user.name, 'destroytest1')
+          done(err)
+        })
     })
   })
   describe('#createAssociation', () => {
-    it('should insert an associated record', () => {
+    let userId
+    before(done => {
+      request
+        .post('/user')
+        .send({ name: 'createtest1' })
+        .expect(200)
+        .end((err, res) => {
+          userId = res.body.id
+          done(err)
+        })
+    })
+    it('should insert an associated record', done => {
+      request
+        .post('/user/' + userId + '/roles')
+        .send({ name: 'associatedroletest1' })
+        .expect(200)
+        .end((err, res) => {
+          const role = res.body
 
+
+          assert(role)
+          assert.equal(role.name, 'associatedroletest1')
+          assert.equal(role.user, userId)
+          done(err)
+        })
     })
   })
   describe('#findAssociation', () => {
-    it('should find an associated record', () => {
+    let userId, roleId
+    before(done => {
+      request
+        .post('/user')
+        .send({ name: 'createtest1' })
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err)
 
+          userId = res.body.id
+          request
+            .post('/user/' + userId + '/roles')
+            .send({ name: 'associatedroletest1' })
+            .expect(200)
+            .end((err, res) => {
+              roleId = res.body.id
+              done(err)
+            })
+        })
+    })
+    it('should find a single associated record ("one")', done => {
+      request
+        .get('/role/' + roleId + '/user')
+        .expect(200)
+        .end((err, res) => {
+          const user = res.body
+          assert(user)
+          assert.equal(user.id, userId)
+          done(err)
+        })
+    })
+    it('should find a set of associated records ("many")', done => {
+      request
+        .get('/user/' + userId + '/roles')
+        .expect(200)
+        .end((err, res) => {
+          const roles = res.body
+          assert(roles.length)
+          assert.equal(roles[0].user, userId)
+          done(err)
+        })
+    })
+    it('should find a particular record in an associated set ("many")', done => {
+      request
+        .get('/user/' + userId + '/roles/' + roleId)
+        .expect(200)
+        .end((err, res) => {
+          const role = res.body
+          assert(role)
+          assert.equal(role.id, roleId)
+          assert.equal(role.user, userId)
+          done(err)
+        })
     })
   })
   describe('#updateAssociation', () => {
     it('should update an associated record', () => {
+
+    })
+    it('should update a set of associated records', () => {
 
     })
   })
