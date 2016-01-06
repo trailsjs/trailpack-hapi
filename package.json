@@ -1,6 +1,6 @@
 {
   "name": "trailpack-hapi",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Hapi.js Trailpack. This pack binds the routes compiled in trailpack-router to a Hapi Server.",
   "main": "index.js",
   "scripts": {
@@ -25,10 +25,11 @@
   },
   "homepage": "https://github.com/trailsjs/trailpack-hapi#readme",
   "dependencies": {
+    "boom": "^3.1.1",
     "hapi": "^11.1.2",
     "hoek": "^3.0.4",
     "inert": "^3.2.0",
-    "joi": "^7.0.1",
+    "joi": "^7.1.0",
     "lodash": "^3.10.1",
     "trailpack": "latest",
     "vision": "^4.0.1"
@@ -39,6 +40,12 @@
   "devDependencies": {
     "eslint": "^1.10.3",
     "eslint-config-trails": "1.0.0",
-    "mocha": "^2.3.4"
+    "mocha": "^2.3.4",
+    "smokesignals": "0.0.8",
+    "supertest": "^1.1.0",
+    "trailpack-core": "0.0.12",
+    "trailpack-router": "0.0.11",
+    "trails": "0.0.14",
+    "waterline-sqlite3": "^0.12.4"
   }
 }

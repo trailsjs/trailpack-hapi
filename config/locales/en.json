@@ -1,0 +1,7 @@
+{
+  "errors": {
+    "footprints": {
+      "payload": "Payload (body) is not valid. Ensure the body is valid JSON, and content-type: application/json"
+    }
+  }
+}
