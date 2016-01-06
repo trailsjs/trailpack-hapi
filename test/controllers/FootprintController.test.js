@@ -283,8 +283,46 @@ describe('FootprintController', () => {
     })
   })
   describe('#destroyAssociation', () => {
-    it('should delete an associated record', () => {
+    let userId, roleId
+    beforeEach(done => {
+      request
+        .post('/user')
+        .send({ name: 'destroyassociationtest1' })
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err)
 
+          userId = res.body.id
+          request
+            .post('/user/' + userId + '/roles')
+            .send({ name: 'associatedroletest3' })
+            .expect(200)
+            .end((err, res) => {
+             roleId = res.body.id
+              done(err)
+            })
+        })
+    })
+    it('should delete a single associated record', done => {
+      request
+        .del('/role/' + roleId + '/user')
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err)
+
+          const user = res.body
+          assert(user)
+          assert.equal(user.id, userId)
+
+          request
+            .get('/user/' + userId)
+            .expect(404)
+            .end((err, res) => {
+              if (err) return done(err)
+
+              done()
+            })
+        })
     })
   })
 })

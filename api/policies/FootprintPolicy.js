@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const boom = require('boom')
+const Boom = require('Boom')
 
 /**
  * Footprint Policy
@@ -18,7 +18,7 @@ module.exports = {
    */
   create (request, reply) {
     if (!_.isPlainObject(request.payload)) {
-      return reply(boom.preconditionFailed(this.__('errors.footprints.payload')))
+      return reply(Boom.preconditionFailed(this.__('errors.footprints.payload')))
     }
 
     reply()
@@ -30,7 +30,7 @@ module.exports = {
    */
   find (request, reply) {
     if (request.params.id && !_.isEmpty(request.query)) {
-      return reply(boom.preconditionFailed(this.__('errors.footprints.find.mutex')))
+      return reply(Boom.preconditionFailed(this.__('errors.footprints.find.mutex')))
     }
 
     reply()
@@ -42,7 +42,7 @@ module.exports = {
    */
   update (request, reply) {
     if (request.params.id && !_.isEmpty(request.query)) {
-      return reply(boom.preconditionFailed(this.__('errors.footprints.update.mutex')))
+      return reply(Boom.preconditionFailed(this.__('errors.footprints.update.mutex')))
     }
 
     reply()
@@ -54,7 +54,7 @@ module.exports = {
    */
   destroy (request, reply) {
     if (request.params.id && !_.isEmpty(request.query)) {
-      return reply(boom.preconditionFailed(this.__('errors.footprints.destroy.mutex')))
+      return reply(Boom.preconditionFailed(this.__('errors.footprints.destroy.mutex')))
     }
 
     reply()
@@ -66,7 +66,7 @@ module.exports = {
    */
   createAssociation (request, reply) {
     if (!_.isPlainObject(request.payload)) {
-      return reply(boom.preconditionFailed(this.__('errors.footprints.payload')))
+      return reply(Boom.preconditionFailed(this.__('errors.footprints.payload')))
     }
 
     reply()
@@ -78,7 +78,7 @@ module.exports = {
    */
   findAssociation (request, reply) {
     if (request.params.childId && !_.isEmpty(request.query)) {
-      return reply(boom.preconditionFailed(this.__('errors.footprints.find.mutex')))
+      return reply(Boom.preconditionFailed(this.__('errors.footprints.find.mutex')))
     }
 
     reply()
@@ -90,7 +90,7 @@ module.exports = {
    */
   updateAssociation (request, reply) {
     if (request.params.childId && !_.isEmpty(request.query)) {
-      return reply(boom.preconditionFailed(this.__('errors.footprints.update.mutex')))
+      return reply(Boom.preconditionFailed(this.__('errors.footprints.update.mutex')))
     }
 
     reply()
@@ -102,7 +102,7 @@ module.exports = {
    */
   destroyAssociation (request, reply) {
     if (request.params.childId && !_.isEmpty(request.query)) {
-      return reply(boom.preconditionFailed(this.__('errors.footprints.destroy.mutex')))
+      return reply(Boom.preconditionFailed(this.__('errors.footprints.destroy.mutex')))
     }
 
     reply()

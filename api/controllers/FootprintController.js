@@ -1,3 +1,7 @@
+'use strict'
+
+const Boom = require('Boom')
+
 /**
  * Footprint Controller
  *
@@ -26,16 +30,24 @@ module.exports = {
    */
   find (request, reply) {
     const FootprintService = this.api.services.FootprintService
+    let response
 
     this.log.debug('[FootprintController] (find) model =',
       request.params.model, 'query =', request.query)
 
     if (request.params.id) {
-      reply(FootprintService.find(request.params.model, request.params.id))
+      response = FootprintService.find(request.params.model, request.params.id)
     }
     else {
-      reply(FootprintService.find(request.params.model, request.query))
+      response = FootprintService.find(request.params.model, request.query)
     }
+
+    reply(response
+      .then(result => {
+        if (!result) return Boom.notFound()
+
+        return result
+      }))
   },
 
   /**
@@ -143,10 +155,36 @@ module.exports = {
 
   /**
    * @see FootprintService.destroyAssociation
+   * @return the id of the destroyed record
    */
   destroyAssociation (request, reply) {
     const FootprintService = this.api.services.FootprintService
+    const parentModel = request.params.parentModel
+    const parentId = request.params.parentId
+    const childAttribute = request.params.childAttribute
+    const childId = request.params.childId
+    let response
 
+    this.log.debug('[FootprintController] (destroyAssociation)',
+      parentModel, parentId, '->', childAttribute, childId,
+      'criteria =', request.query)
+
+    if (childId) {
+      response = FootprintService.destroyAssociation(
+        parentModel, parentId, childAttribute, childId)
+    }
+    else {
+      response = FootprintService.destroyAssociation(
+        parentModel, parentId, childAttribute, request.query)
+    }
+
+    reply(response
+      .then(result => {
+        if (!result) return Boom.notFound()
+
+        return result
+      })
+    )
   }
 }
 
