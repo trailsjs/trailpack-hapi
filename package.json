@@ -43,7 +43,7 @@
     "mocha": "^2.3.4",
     "smokesignals": "0.0.8",
     "supertest": "^1.1.0",
-    "trailpack-core": "0.0.12",
+    "trailpack-core": "0.0.17",
     "trailpack-router": "0.0.11",
     "trails": "0.0.14",
     "waterline-sqlite3": "^0.12.4"
