@@ -5,6 +5,11 @@
  * modified by this trailpack.
  */
 module.exports = {
-  provides: { }
+  provides: { },
+  lifecycle: {
+    initialize: {
+      listen: [ 'trailpack:router:initialized' ]
+    }
+  }
 }
 
