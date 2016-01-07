@@ -46,6 +46,7 @@
     "supertest": "^1.1.0",
     "trailpack-core": "0.0.12",
     "trailpack-router": "0.0.11",
+    "trailpack-waterline": "0.0.6",
     "trails": "0.0.14",
     "waterline-sqlite3": "^0.12.4"
   }
