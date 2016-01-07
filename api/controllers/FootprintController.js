@@ -20,7 +20,7 @@ module.exports = {
     const FootprintService = this.api.services.FootprintService
 
     this.log.debug('[FootprintController] (create) model =',
-      request.params.model, 'payload =', request.payload)
+      request.params.model, ', payload =', request.payload)
 
     reply(FootprintService.create(request.params.model, request.payload))
   },
@@ -33,7 +33,7 @@ module.exports = {
     let response
 
     this.log.debug('[FootprintController] (find) model =',
-      request.params.model, 'query =', request.query)
+      request.params.model, ', query =', request.query)
 
     if (request.params.id) {
       response = FootprintService.find(request.params.model, request.params.id)
@@ -57,8 +57,8 @@ module.exports = {
     const FootprintService = this.api.services.FootprintService
 
     this.log.debug('[FootprintController] (update) model =',
-    request.params.model, 'criteria =', request.query, request.params.id,
-      'values = ', request.payload)
+    request.params.model, ', criteria =', request.query, request.params.id,
+      ', values = ', request.payload)
 
     if (request.params.id) {
       reply(FootprintService.update(request.params.model, request.params.id, request.payload))
@@ -75,7 +75,7 @@ module.exports = {
     const FootprintService = this.api.services.FootprintService
 
     this.log.debug('[FootprintController] (destroy) model =',
-      request.params.model, 'query =', request.query)
+      request.params.model, ', query =', request.query)
 
     if (request.params.id) {
       reply(FootprintService.destroy(request.params.model, request.params.id))
@@ -96,7 +96,7 @@ module.exports = {
     const payload = request.payload
 
     this.log.debug('[FootprintController] (createAssociation)',
-      parentModel, '->', childAttribute, 'payload =', payload)
+      parentModel, '->', childAttribute, ', payload =', payload)
 
     reply(FootprintService.createAssociation(parentModel, parentId, childAttribute, payload))
   },
@@ -113,7 +113,7 @@ module.exports = {
 
     this.log.debug('[FootprintController] (findAssociation)',
       parentModel, parentId, '->', childAttribute, childId,
-      'criteria =', request.query)
+      ', criteria =', request.query)
 
     if (childId) {
       reply(FootprintService.findAssociation(
@@ -139,7 +139,7 @@ module.exports = {
 
     this.log.debug('[FootprintController] (updateAssociation)',
       parentModel, parentId, '->', childAttribute, childId,
-      'criteria =', request.query)
+      ', criteria =', request.query)
 
     if (childId) {
       reply(FootprintService.updateAssociation(
@@ -167,7 +167,7 @@ module.exports = {
 
     this.log.debug('[FootprintController] (destroyAssociation)',
       parentModel, parentId, '->', childAttribute, childId,
-      'criteria =', request.query)
+      ', criteria =', request.query)
 
     if (childId) {
       response = FootprintService.destroyAssociation(
