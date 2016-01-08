@@ -39,14 +39,14 @@
     "extends": "trails"
   },
   "devDependencies": {
-    "eslint": "^1.10.3",
+    "eslint": "^2.0.0-alpha-2",
     "eslint-config-trails": "1.0.1",
     "mocha": "^2.3.4",
     "smokesignals": "0.0.8",
     "supertest": "^1.1.0",
-    "trailpack-core": "0.0.12",
-    "trailpack-router": "0.0.11",
-    "trailpack-waterline": "0.0.6",
+    "trailpack-core": "0.0.20",
+    "trailpack-router": "0.0.19",
+    "trailpack-waterline": "0.0.11",
     "trails": "0.0.14",
     "waterline-sqlite3": "^0.12.4"
   }
