@@ -17,7 +17,7 @@ module.exports = {
    * @see FootprintController.create
    */
   create (request, reply) {
-    if (!_.isPlainObject(request.payload)) {
+    if (!_.isPlainObject(request.payload) && !_.isArray(request.payload)) {
       return reply(Boom.preconditionFailed(this.__('errors.footprints.payload')))
     }
 
