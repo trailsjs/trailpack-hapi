@@ -1,7 +1,7 @@
 'use strict'
 
 const _ = require('lodash')
-const Trailpack = require('trailpack')
+const WebServerTrailpack = require('trailpack-webserver')
 const lib = require('./lib')
 
 /**
@@ -12,7 +12,7 @@ const lib = require('./lib')
  *
  * Bind application routes to Hapi.js (from trailpack-router)
  */
-module.exports = class Hapi extends Trailpack {
+module.exports = class Hapi extends WebServerTrailpack {
 
   /**
    * Ensure that config/web is valid, and that no other competing web
@@ -26,6 +26,10 @@ module.exports = class Hapi extends Trailpack {
     return Promise.all([
       lib.Validator.validateWebConfig(this.app.config.web)
     ])
+  }
+
+  configure () {
+    this.app.config.web.server = 'hapi'
   }
 
   /**

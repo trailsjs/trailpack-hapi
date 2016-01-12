@@ -1,5 +1,8 @@
+'use strict'
+
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
+const Model = require('trails-model')
 
 const App = {
   pkg: {
@@ -7,22 +10,26 @@ const App = {
   },
   api: {
     models: {
-      User: {
-        attributes: {
-          name: {
-            type: 'string'
-          },
-          roles: {
-            collection: 'Role',
-            via: 'user'
+      User: class User extends Model {
+        static schema () {
+          return {
+            name: {
+              type: 'string'
+            },
+            roles: {
+              collection: 'Role',
+              via: 'user'
+            }
           }
         }
       },
-      Role: {
-        attributes: {
-          name: 'string',
-          user: {
-            model: 'User'
+      Role: class Role extends Model {
+        static schema () {
+          return {
+            name: 'string',
+            user: {
+              model: 'User'
+            }
           }
         }
       }

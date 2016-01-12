@@ -1,40 +1,47 @@
+'use strict'
+
 const _ = require('lodash')
 const Boom = require('Boom')
+const Policy = require('trails-policy')
 
 /**
  * Footprint Policy
  *
  * Validate footprint requests; namely, that the path parameters represent
- * actual and correct models anda actions. Semantic ORM input validation is
+ * actual and correct models and actions. Semantic ORM input validation is
  * performed by the FootprintService.
  *
  * @see http://hapijs.com/api#request-object
  */
-module.exports = {
+module.exports = class FootprintPolicy extends Policy {
 
   /**
    * Create Policy.
    * @see FootprintController.create
    */
   create (request, reply) {
+    this.log.debug('[FootprintPolicy] (create)')
+
     if (!_.isPlainObject(request.payload) && !_.isArray(request.payload)) {
       return reply(Boom.preconditionFailed(this.__('errors.footprints.payload')))
     }
 
     reply()
-  },
+  }
 
   /**
    * Find Policy.
    * @see FootprintController.find
    */
   find (request, reply) {
-    if (request.params.id && !_.isEmpty(request.query)) {
+    const criteria = this.app.packs.hapi.getCriteriaFromQuery(request.query)
+
+    if (request.params.id && !_.isEmpty(criteria)) {
       return reply(Boom.preconditionFailed(this.__('errors.footprints.find.mutex')))
     }
 
     reply()
-  },
+  }
 
   /**
    * Update Policy.
@@ -46,7 +53,7 @@ module.exports = {
     }
 
     reply()
-  },
+  }
 
   /**
    * Destroy Policy.
@@ -58,7 +65,7 @@ module.exports = {
     }
 
     reply()
-  },
+  }
 
   /**
    * Create Association Policy.
@@ -70,7 +77,7 @@ module.exports = {
     }
 
     reply()
-  },
+  }
 
   /**
    * Find Association Policy.
@@ -82,7 +89,7 @@ module.exports = {
     }
 
     reply()
-  },
+  }
 
   /**
    * Update Association Policy.
@@ -94,7 +101,7 @@ module.exports = {
     }
 
     reply()
-  },
+  }
 
   /**
    * Destroy Association Policy.
