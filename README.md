@@ -24,7 +24,7 @@ module.exports = {
 }
 ```
 
-## View Config
+### View Config
 Choose a template engine.
 
 ```js
@@ -41,11 +41,42 @@ This feature has been tested with Jade and Handlebars. TODO: Put this in yeoman?
 ## Configuration
 See [`config/web.js`](https://github.com/trailsjs/trails-example-app/blob/master/config/web.js) for an example.
 
-#### `server`
-The web server to use. When using trailpack-hapi, `server` should be set to `'hapi'`.
-
 #### `port`
 The port to listen on. `3000` by default. Can also be set via the `PORT` environment variable.
+
+#### Hapi Plugins
+Register your hapi plugins by adding them to the web.js config in typical Hapi
+plugin format. See: http://hapijs.com/tutorials/plugins#loading-a-plugin
+
+```js
+// config/web.js
+module.exports = {
+  plugins: [
+    {
+      register: require('vision'),
+      options: { }
+    },
+    {
+      register: require('inert'),
+      options: { }
+    },
+    // ...
+  ]
+}
+```
+
+#### Hapi Views
+```js
+// config/web.js
+module.exports = {
+  views: {
+    engines: {
+      html: require('some-view-engine')
+    },
+    path: 'views'
+  }
+}
+```
 
 ## Contributing
 We love contributions! In order to be able to review your code efficiently,

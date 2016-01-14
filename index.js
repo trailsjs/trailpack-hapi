@@ -30,6 +30,7 @@ module.exports = class Hapi extends WebServerTrailpack {
 
   configure () {
     this.app.config.web.server = 'hapi'
+    this.app.config.web.views.relativeTo = this.app.config.main.paths.root
   }
 
   /**
@@ -38,12 +39,15 @@ module.exports = class Hapi extends WebServerTrailpack {
   initialize () {
     this.server = lib.Server.createServer(this.app.config)
 
-    lib.Server.registerPlugins(this.app, this.server)
-    lib.Server.registerMethods(this.app, this.server)
-    lib.Server.registerRoutes(this.app, this.server)
-    lib.Server.registerViews(this.app, this.server)
-
-    return lib.Server.start(this.server)
+    return lib.Server.registerPlugins(this.app, this.server)
+      .then(() => {
+        lib.Server.registerMethods(this.app, this.server)
+        lib.Server.registerRoutes(this.app, this.server)
+        lib.Server.registerViews(this.app, this.server)
+      })
+      .then(() => {
+        return lib.Server.start(this.server)
+      })
   }
 
   constructor (app, config) {
