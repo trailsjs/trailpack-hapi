@@ -35,6 +35,7 @@
     "trailpack": "latest",
     "trailpack-webserver": "^1.0.0-alpha-1",
     "trails-controller": "^1.0.0-alpha-1",
+    "trails-policy": "^1.0.0",
     "vision": "^4.0.1"
   },
   "eslintConfig": {
