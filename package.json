@@ -33,6 +33,7 @@
     "joi": "^7.1.0",
     "lodash": "^3.10.1",
     "trailpack": "latest",
+    "trailpack-webserver": "^1.0.0-alpha-1",
     "vision": "^4.0.1"
   },
   "eslintConfig": {
