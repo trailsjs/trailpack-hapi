@@ -27,11 +27,11 @@
   "dependencies": {
     "boom": "^3.1.1",
     "eslint": "^2.0.0-alpha-2",
-    "hapi": "^11.1.2",
+    "hapi": "^12.1.0",
     "hoek": "^3.0.4",
     "inert": "^3.2.0",
     "joi": "^7.1.0",
-    "lodash": "^3.10.1",
+    "lodash": "^4.0.0",
     "trailpack": "latest",
     "trailpack-webserver": "^1.0.0-alpha-1",
     "trails-controller": "^1.0.0-alpha-1",
