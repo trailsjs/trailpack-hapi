@@ -1,7 +1,7 @@
 'use strict'
 
 const _ = require('lodash')
-const Boom = require('Boom')
+const Boom = require('boom')
 const Controller = require('trails-controller')
 
 /**
