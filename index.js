@@ -19,7 +19,7 @@ module.exports = class Hapi extends WebServerTrailpack {
    * server trailpacks are installed (e.g. express)
    */
   validate () {
-    if (_.contains(_.keys(this.app.packs), 'express4', 'koa', 'koa2', 'restify')) {
+    if (_.includes(_.keys(this.app.packs), 'express4', 'koa', 'koa2', 'restify')) {
       return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
     }
 
