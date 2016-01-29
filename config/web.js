@@ -11,8 +11,10 @@ module.exports = {
   ],
   views: {
     engines: {
+      // Have user provide engine
       // html: require('some-view-engine')
     }
+    //Have user provide a path.
     //path: 'views'
   }
 }
