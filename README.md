@@ -13,7 +13,7 @@ to a [Hapi Server](http://hapijs.com/api#server).
 Load in your trailpack config.
 
 ```js
-// config/trailpack.js
+// config/main.js
 module.exports = {
   // ...
   packs: [
@@ -71,10 +71,23 @@ module.exports = {
 module.exports = {
   views: {
     engines: {
-      html: require('some-view-engine')
+      html: require('handlebars')
     },
-    path: 'views'
+      path: Path.join(__dirname, '../views')
   }
+}
+```
+
+#### Serve a directory 
+```js
+// config/web.js
+module.exports = {
+  www: {
+    directory: Path.join(__dirname, '../www'),
+    redirectToSlash: true,
+    listing: false,
+    index: true
+  } 
 }
 ```
 

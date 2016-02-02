@@ -80,10 +80,16 @@ const App = {
     },
     web: {
       port: 3000,
-      host: 'localhost'
-    },
-    views: {
-
+      host: 'localhost',
+      views: {
+        engines: {
+          html: require('handlebars')
+        },
+          path: 'views'
+      },
+      www: {
+        directory: '../www'
+      }
     }
   }
 }

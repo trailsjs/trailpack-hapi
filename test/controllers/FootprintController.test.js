@@ -77,7 +77,6 @@ describe('FootprintController', () => {
         .expect(200)
         .end((err, res) => {
           const user = res.body
-          console.log(user)
           assert.equal(user.name, 'findtestuser')
           assert(user.roles)
           assert.equal(user.roles[0].id, roleId)
