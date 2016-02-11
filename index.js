@@ -41,7 +41,6 @@ module.exports = class Hapi extends WebServerTrailpack {
 
     return lib.Server.registerPlugins(this.app, this.server)
       .then(() => {
-        lib.Server.registerMethods(this.app, this.server)
         lib.Server.registerRoutes(this.app, this.server)
         lib.Server.registerViews(this.app, this.server)
       })

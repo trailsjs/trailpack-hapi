@@ -71,8 +71,9 @@ const App = {
         smokesignals.Trailpack,
         require('trailpack-core'),
         require('trailpack-router'),
+        require('trailpack-footprints'),
         require('trailpack-waterline'),
-        require('../') // trailpack-hapi
+        require('../../') // trailpack-hapi
       ],
       paths: {
         root: __dirname + '../'
@@ -84,7 +85,8 @@ const App = {
     },
     views: {
 
-    }
+    },
+    routes: [ ]
   }
 }
 _.defaultsDeep(App, smokesignals.FailsafeConfig)
