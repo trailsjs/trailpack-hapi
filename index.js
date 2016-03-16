@@ -52,6 +52,10 @@ module.exports = class Hapi extends WebServerTrailpack {
       })
   }
 
+  unload () {
+    this.server.stop()
+  }
+
   constructor (app, config) {
     super(app, {
       config: require('./config'),
