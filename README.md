@@ -13,7 +13,7 @@ to a [Hapi Server](http://hapijs.com/api#server).
 Load in your trailpack config.
 
 ```js
-// config/trailpack.js
+// config/main.js
 module.exports = {
   // ...
   packs: [
