@@ -78,6 +78,14 @@ module.exports = {
 }
 ```
 
+#### Static Assets
+```js
+// config/web.js
+module.exports = {
+  assets: 'static'
+}
+```
+
 ## Contributing
 We love contributions! In order to be able to review your code efficiently,
 please keep the following in mind:
