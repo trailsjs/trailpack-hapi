@@ -4,7 +4,7 @@ const assert = require('assert')
 const supertest = require('supertest')
 
 describe('FootprintController', () => {
-  let request, userId
+  let request
   before(() => {
     request = supertest('http://localhost:3000')
   })
@@ -22,31 +22,64 @@ describe('FootprintController', () => {
           assert(user.id)
           assert.equal(user.name, 'createtest1')
 
-          userId = user.id
-
           done(err)
         })
     })
   })
   describe('#find', () => {
+    let userId, roleId
+    before(done => {
+      request
+        .post('/user')
+        .send({ name: 'findtestuser' })
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err)
+
+          userId = res.body.id
+          request
+            .post('/user/' + userId + '/roles')
+            .send({ name: 'findtestrole' })
+            .expect(200)
+            .end((err, res) => {
+              roleId = res.body.id
+              done(err)
+            })
+        })
+    })
     it('should find a single record', done => {
       request
         .get('/user/' + userId)
         .expect(200)
         .end((err, res) => {
           const user = res.body
-          assert.equal(user.name, 'createtest1')
+          assert.equal(user.name, 'findtestuser')
           done(err)
         })
     })
     it('should find a set of records', done => {
       request
         .get('/user')
-        .query({ name: 'createtest1' })
+        .query({ name: 'findtestuser' })
         .expect(200)
         .end((err, res) => {
           const user = res.body[0]
-          assert.equal(user.name, 'createtest1')
+          assert.equal(user.name, 'findtestuser')
+          done(err)
+        })
+    })
+    it('should find a single record and populate an association', done => {
+      request
+        .get('/user/' + userId)
+        .query({
+          populate: [ 'roles' ]
+        })
+        .expect(200)
+        .end((err, res) => {
+          const user = res.body
+          assert.equal(user.name, 'findtestuser')
+          assert(user.roles)
+          assert.equal(user.roles[0].id, roleId)
           done(err)
         })
     })
