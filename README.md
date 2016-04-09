@@ -53,7 +53,7 @@ Hapi.server format. See: http://hapijs.com/api#new-serveroptions
 // config/web.js
 module.exports = {
   options: {
-    
+
     routes: {
       cors: true
     }
@@ -77,6 +77,14 @@ module.exports = {
       register: require('inert'),
       options: { }
     },
+    {
+      register: require('hapi-auth-hawk'),
+      options: { },
+      onLoad: function (err) {
+        // Note that `this` is `server` instance
+        this.auth.strategy('default', 'hawk', { getCredentialsFunc: getCredentials });
+      }
+    }
     // ...
   ]
 }
