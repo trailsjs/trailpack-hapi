@@ -79,14 +79,15 @@ module.exports = {
     },
     {
       register: require('hapi-auth-hawk'),
-      options: { },
-      onLoad: function (err) {
-        // Note that `this` is `server` instance
-        this.auth.strategy('default', 'hawk', { getCredentialsFunc: getCredentials });
-      }
+      options: { }
     }
     // ...
-  ]
+  ],
+
+  onPluginsLoaded: function (err) {
+    // Note that `this` is Trails `app` instance
+    this.packs.hapi.server.auth.strategy('default', 'hawk', { getCredentialsFunc: getCredentials });
+  }
 }
 ```
 
