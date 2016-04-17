@@ -33,7 +33,7 @@
     "trailpack": "^1.0.0-beta-1",
     "trailpack-webserver": "^1.0.0-alpha-1",
     "trails-controller": "^1.0.0-beta-1",
-    "trails-policy": "^1.0.0",
+    "trails-policy": "^1.0.2",
     "vision": "^4.0.1"
   },
   "devDependencies": {
