@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "eslint": "^2.0.0-alpha-2",
-    "eslint-config-trails": "^1.0.1",
+    "eslint-config-trails": "^1.0.4",
     "mocha": "^2.3.4",
     "smokesignals": "^1.0.0",
     "supertest": "^1.1.0",
