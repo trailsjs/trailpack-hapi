@@ -84,7 +84,7 @@ module.exports = {
 module.exports = {
   paths: {
     ...
-    www: 'static'
+    www: path.resolve(__dirname, '..', 'static')
     ...
   }
 }
