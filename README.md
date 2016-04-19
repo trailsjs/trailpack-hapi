@@ -80,11 +80,17 @@ module.exports = {
 
 #### Static Assets
 ```js
-// config/web.js
+// config/main.js
 module.exports = {
-  assets: 'static'
+  paths: {
+    ...
+    www: path.resolve(__dirname, '..', 'static')
+    ...
+  }
 }
 ```
+This allows static files such as js or images to be served in the /static directory.
+If you prefer, feel free to use a name other than 'static'!
 
 ## Contributing
 We love contributions! In order to be able to review your code efficiently,
