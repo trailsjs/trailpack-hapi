@@ -7,7 +7,7 @@
 [![Code Climate][codeclimate-image]][codeclimate-url]
 
 Hapi Trailpack. This pack binds the routes compiled in [trailpack-router](https://github.com/trailsjs/trailpack-router)
-to a [Hapi Server](http://hapijs.com/api#server). 
+to a [Hapi Server](http://hapijs.com/api#server).
 
 ## Usage
 Load in your trailpack config.
@@ -44,8 +44,25 @@ See [`config/web.js`](https://github.com/trailsjs/trails-example-app/blob/master
 #### `port`
 The port to listen on. `3000` by default. Can also be set via the `PORT` environment variable.
 
+#### Server configuration
+Configure your `Hapi.Server` by adding `options` property to the `web.js` config in typical
+Hapi.server format. See: http://hapijs.com/api#new-serveroptions
+
+```js
+
+// config/web.js
+module.exports = {
+  options: {
+
+    routes: {
+      cors: true
+    }
+  }
+}
+```
+
 #### Hapi Plugins
-Register your hapi plugins by adding them to the web.js config in typical Hapi
+Register your hapi plugins by adding them to the `config/web.js` config in typical Hapi
 plugin format. See: http://hapijs.com/tutorials/plugins#loading-a-plugin
 
 ```js
@@ -60,8 +77,17 @@ module.exports = {
       register: require('inert'),
       options: { }
     },
+    {
+      register: require('hapi-auth-hawk'),
+      options: { }
+    }
     // ...
-  ]
+  ],
+
+  onPluginsLoaded: function (err) {
+    // Note that `this` is Trails `app` instance
+    this.packs.hapi.server.auth.strategy('default', 'hawk', { getCredentialsFunc: getCredentials });
+  }
 }
 ```
 
@@ -113,4 +139,3 @@ please keep the following in mind:
 [codeclimate-url]: https://codeclimate.com/github/trailsjs/trailpack-hapi
 [gitter-image]: http://img.shields.io/badge/+%20GITTER-JOIN%20CHAT%20%E2%86%92-1DCE73.svg?style=flat-square
 [gitter-url]: https://gitter.im/trailsjs/trails
-
