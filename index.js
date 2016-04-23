@@ -1,5 +1,6 @@
 'use strict'
 
+const Hapi = require('hapi')
 const _ = require('lodash')
 const WebServerTrailpack = require('trailpack-webserver')
 const lib = require('./lib')
@@ -12,7 +13,7 @@ const lib = require('./lib')
  *
  * Bind application routes to Hapi.js (from trailpack-router)
  */
-module.exports = class Hapi extends WebServerTrailpack {
+module.exports = class HapiTrailpack extends WebServerTrailpack {
 
   /**
    * Ensure that config/web is valid, and that no other competing web
@@ -29,21 +30,41 @@ module.exports = class Hapi extends WebServerTrailpack {
   }
 
   configure () {
-    this.app.config.web.server = 'hapi'
-    this.app.config.web.views.relativeTo = this.app.config.main.paths.root
+    const webConfig = this.app.config.web
 
-    this.server = lib.Server.createServer(this.app.config)
-    return lib.Server.registerPlugins(this.app, this.server)
+    webConfig.plugins || (webConfig.plugins = [ ])
+    webConfig.options || (webConfig.options = { })
+
+    webConfig.server = 'hapi'
+    webConfig.views.relativeTo = this.app.config.main.paths.root
+
+    _.defaultsDeep(webConfig.options, {
+      host: webConfig.host,
+      port: webConfig.port,
+      routes: {
+        files: {
+          relativeTo: webConfig.views.relativeTo
+        }
+      }
+    })
   }
 
   /**
    * Start Hapi Server
    */
   initialize () {
-    lib.Server.registerRoutes(this.app, this.server)
-    lib.Server.registerViews(this.app, this.server)
+    this.webConfig = _.cloneDeep(this.app.config.web)
 
-    return lib.Server.start(this.server)
+    this.server = new Hapi.Server()
+    this.server.connection(this.webConfig.options)
+
+    return lib.Server.registerPlugins(this.webConfig, this.server, this.app)
+      .then(() => {
+        lib.Server.registerRoutes(this.webConfig, this.server, this.app)
+        lib.Server.registerViews(this.webConfig, this.server, this.app)
+
+        return this.server.start()
+      })
   }
 
   unload () {
