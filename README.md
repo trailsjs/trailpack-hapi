@@ -34,9 +34,7 @@ module.exports = {
 }
 ```
 
-Then simply write your views in a directory called 'templates'!
-
-This feature has been tested with Jade and Handlebars. TODO: Put this in yeoman?
+Then simply write your views in a directory called 'templates'! This feature has been tested with Jade and Handlebars.
 
 ## Configuration
 See [`config/web.js`](https://github.com/trailsjs/trails-example-app/blob/master/config/web.js) for an example.
@@ -119,15 +117,13 @@ This allows static files such as js or images to be served in the /static direct
 If you prefer, feel free to use a name other than 'static'!
 
 ## Contributing
-We love contributions! In order to be able to review your code efficiently,
-please keep the following in mind:
-
-1. Pull Requests (PRs) must include new and/or updated tests, and all tests [must pass](https://travis-ci.org/trailsjs/trailpack-hapi).
-2. Use `eslint`! See the `eslintConfig` in [package.json](https://github.com/trailsjs/trailpack-hapi/blob/master/package.json).
-3. Please [reference the relevant issue](https://github.com/blog/1506-closing-issues-via-pull-requests) in your Pull Request.
+We love contributions! Please check out our [Contributor's Guide](https://github.com/trailsjs/trails/blob/master/.github/CONTRIBUTING.md) for more
+information on how our projects are organized and how to get started.
 
 ## License
 [MIT](https://github.com/trailsjs/trailpack-hapi/blob/master/LICENSE)
+
+<img src="http://i.imgur.com/dCjNisP.png">
 
 [npm-image]: https://img.shields.io/npm/v/trailpack-hapi.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/trailpack-hapi
