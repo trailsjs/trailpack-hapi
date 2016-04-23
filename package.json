@@ -18,7 +18,7 @@
     "server",
     "trailpack"
   ],
-  "author": "Travis Webb <me@traviswebb.com>",
+  "author": "Trails.js Team <hello@trailsjs.io>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/trailsjs/trailpack-hapi/issues"
