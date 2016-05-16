@@ -331,7 +331,7 @@ describe('FootprintController', () => {
             .send({ name: 'associatedroletest3' })
             .expect(200)
             .end((err, res) => {
-             roleId = res.body.id
+              roleId = res.body.id
               done(err)
             })
         })
