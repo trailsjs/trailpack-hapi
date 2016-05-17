@@ -26,6 +26,7 @@
   "homepage": "https://github.com/trailsjs/trailpack-hapi#readme",
   "dependencies": {
     "boom": "^3.1.1",
+    "good": "^7.0.0",
     "hapi": "^13.3.0",
     "inert": "^3.2.0",
     "joi": "^8.0.5",
@@ -37,7 +38,7 @@
     "vision": "^4.0.1"
   },
   "devDependencies": {
-    "eslint": "^2.0.0-alpha-2",
+    "eslint": "^2.0.0",
     "eslint-config-trails": "^1.0.3",
     "mocha": "^2.3.4",
     "smokesignals": "^1.0.0",
@@ -50,6 +51,13 @@
     "trails-model": "^1.0.0-beta-1",
     "waterline-sqlite3": "^1.0.0"
   },
+  "bundledDependencies": [
+    "boom",
+    "good",
+    "hapi",
+    "inert",
+    "vision"
+  ],
   "eslintConfig": {
     "extends": "trails"
   }

@@ -1,7 +1,8 @@
 language: node_js
 node_js:
-- '4'
-- stable
+- 4
+- 5
+- 6
 
 notifications:
   email: false
@@ -16,7 +17,8 @@ deploy:
   email: hello@trailsjs.io
   api_key:
     secure: at8trQAAOCO/7htQMhNp7IIeMDSUVi+7sxSwra9uSEijNI6iIOHE+J40JDDbhqk2o2hy87ax1AfcDG4wwZsNDMHosmgXu+Vwiet50JjVx6POl/OIdb4SlKv9QpTF7D70W/eWoZ8jk4B3eILR4lBX/GPCGqRA8R6gyr1PfG6l6xdNAkMfsgmhZi4ht4hoKAbrWaLC7uHQPqsLIMfdKHHL/RcEt8aOnZiuH+dEL7mg21eyuLs7l45FFDlIlT5Ibks+1rlflgkK6dlBWMBKBVFx8bkKCM+sL0bgwGZzi5Zz45eI+UNwB5xeSnWikgfmuq5Pa/VWR330ofVCphhfiqXPSz381Vzkxo7W2mhuPFh17vVbdMjw7ELov1g0KGGGycp75lI7p4R3XX5zmrRrjxo3yDdKvCc3VFeIWh5iN5+IaCmEFCnzPbcbLqoS+wh1qq0ll/hRANrraxjVckwUQHOedmQ+9TMY3YQCB/gtpbRRUWScIHH8nSfGufox6DxdFk105n9h+S0FFAar3WRM1YNdW/Vc45k3Xd0sUYjWKhhWeyG/Lv74/AHciFO+rWrIKTIHNKFebDe/D73+zoi/LivyMyr1lyOKPwgXhws8cq9Yqx0LP14iB7QCCzTeWnCYUWk/sqMCVLvhMl7e0RL6D9//8+Krt2wTnBVY2BXTFXHZ+ks=
+  skip_cleanup: true
   on:
     tags: true
     repo: trailsjs/trailpack-hapi
-    node: stable
+    node: 6
