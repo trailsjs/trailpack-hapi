@@ -30,7 +30,7 @@
     "hapi": "^13.3.0",
     "inert": "^3.2.0",
     "joi": "^8.0.5",
-    "lodash": "^4.2.0",
+    "lodash": "^4.3.0",
     "trailpack": "^1.0.0-beta-1",
     "trailpack-webserver": "^1.0.0-alpha-1",
     "trails-controller": "^1.0.0-beta-1",
