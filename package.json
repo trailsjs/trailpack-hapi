@@ -51,13 +51,6 @@
     "trails-model": "^1.0.0-beta-1",
     "waterline-sqlite3": "^1.0.0"
   },
-  "bundledDependencies": [
-    "boom",
-    "good",
-    "hapi",
-    "inert",
-    "vision"
-  ],
   "eslintConfig": {
     "extends": "trails"
   }
