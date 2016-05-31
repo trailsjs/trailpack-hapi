@@ -9,7 +9,7 @@ const lib = require('./lib')
  * Hapi Trailpack
  *
  * @class Hapi
- * @see {@link http://trailsjs.io/doc/trailpack
+ * @see {@link http://trailsjs.io/doc/trailpack}
  *
  * Bind application routes to Hapi.js (from trailpack-router)
  */
@@ -20,13 +20,7 @@ module.exports = class HapiTrailpack extends WebServerTrailpack {
    * server trailpacks are installed (e.g. express)
    */
   validate () {
-    if (_.includes(_.keys(this.app.packs), 'express4', 'koa', 'koa2', 'restify')) {
-      return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
-    }
-
-    return Promise.all([
-      lib.Validator.validateWebConfig(this.app.config.web)
-    ])
+    return lib.Validator.validateWebConfig(this.app.config.web)
   }
 
   configure () {
