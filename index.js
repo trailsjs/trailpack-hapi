@@ -20,13 +20,15 @@ module.exports = class HapiTrailpack extends WebServerTrailpack {
    * server trailpacks are installed (e.g. express)
    */
   validate () {
-    return lib.Validator.validateWebConfig(this.app.config.web)
+
+    //return lib.Validator.validateWebConfig(this.app.config.web)
   }
 
   configure () {
     const webConfig = this.app.config.web
 
     webConfig.plugins || (webConfig.plugins = [ ])
+    webConfig.extensions || (webConfig.extensions = [ ])
     webConfig.options || (webConfig.options = { })
 
     webConfig.server = 'hapi'
@@ -56,6 +58,7 @@ module.exports = class HapiTrailpack extends WebServerTrailpack {
       .then(() => {
         lib.Server.registerRoutes(this.webConfig, this.server, this.app)
         lib.Server.registerViews(this.webConfig, this.server, this.app)
+        lib.Server.registerExtensions(this.webConfig, this.server, this.app)
 
         return this.server.start()
       })
