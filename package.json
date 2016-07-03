@@ -49,7 +49,7 @@
     "trailpack-waterline": "^1.0.0-alpha-6",
     "trails": "^1.0.0-beta-1",
     "trails-model": "^1.0.0-beta-1",
-    "waterline-sqlite3": "^1.0.0"
+    "waterline-sqlite3": "^1.0.3"
   },
   "eslintConfig": {
     "extends": "trails"
