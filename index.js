@@ -59,8 +59,11 @@ module.exports = class HapiTrailpack extends WebServerTrailpack {
         lib.Server.registerRoutes(this.webConfig, this.server, this.app)
         lib.Server.registerViews(this.webConfig, this.server, this.app)
         lib.Server.registerExtensions(this.webConfig, this.server, this.app)
-
+        lib.Server.nativeServer = this.server
         return this.server.start()
+      })
+      .then(() => {
+        this.app.emit('webserver:http:ready', lib.Server.nativeServer.listener)
       })
   }
 
