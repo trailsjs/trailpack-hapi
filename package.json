@@ -1,6 +1,6 @@
 {
   "name": "trailpack-hapi",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.3",
   "description": "Hapi.js Trailpack. This pack binds the routes compiled in trailpack-router to a Hapi Server.",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "server",
     "trailpack"
   ],
-  "author": "Travis Webb <me@traviswebb.com>",
+  "author": "Trails.js Team <hello@trailsjs.io>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/trailsjs/trailpack-hapi/issues"
@@ -26,19 +26,20 @@
   "homepage": "https://github.com/trailsjs/trailpack-hapi#readme",
   "dependencies": {
     "boom": "^3.1.1",
-    "hapi": "^12.1.0",
+    "good": "^7.0.0",
+    "hapi": "^13.3.0",
     "inert": "^3.2.0",
-    "joi": "^7.1.0",
+    "joi": "^8.0.5",
     "lodash": "^4.2.0",
     "trailpack": "^1.0.0-beta-1",
     "trailpack-webserver": "^1.0.0-alpha-1",
     "trails-controller": "^1.0.0-beta-1",
-    "trails-policy": "^1.0.0",
+    "trails-policy": "^1.0.2",
     "vision": "^4.0.1"
   },
   "devDependencies": {
-    "eslint": "^2.0.0-alpha-2",
-    "eslint-config-trails": "^1.0.1",
+    "eslint": "^2.0.0",
+    "eslint-config-trails": "^1.0.3",
     "mocha": "^2.3.4",
     "smokesignals": "^1.0.0",
     "supertest": "^1.1.0",
