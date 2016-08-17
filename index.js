@@ -63,7 +63,7 @@ module.exports = class HapiTrailpack extends WebServerTrailpack {
         return this.server.start()
       })
       .then(() => {
-        this.app.emit('webserver:http:ready', lib.Server.nativeServer.listener);
+        this.app.emit('webserver:http:ready', lib.Server.nativeServer.listener)
       })
   }
 
