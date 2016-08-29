@@ -116,6 +116,30 @@ module.exports = {
 This allows static files such as js or images to be served in the /static directory.
 If you prefer, feel free to use a name other than 'static'!
 
+#### Multiple Static Assets
+```js
+// config/main.js
+module.exports = {
+  paths: {
+    ...
+    www: [
+      {
+        path: path.resolve(__dirname, '..', 'static'),
+        humanUrl: '/admin'
+      },
+      {
+        path: path.resolve(__dirname, '..', 'uploads', 'pictures', 'cats'),
+        humanUrl: '/cats'
+      }
+    ]
+    ...
+  }
+}
+```
+Also you can make multiple static assets with human url.
+For example your static files in `/uploads/pictures/cats` with `humanUrl` you url look like `http://example.com/cats`
+`humanUrl` - not require
+
 ## Contributing
 We love contributions! Please check out our [Contributor's Guide](https://github.com/trailsjs/trails/blob/master/.github/CONTRIBUTING.md) for more
 information on how our projects are organized and how to get started.
