@@ -37,18 +37,18 @@
     "vision": "^4.1.0"
   },
   "devDependencies": {
-    "eslint": "^2.0.0",
-    "eslint-config-trails": "^1.0.3",
-    "mocha": "^2.3.4",
-    "smokesignals": "^1.0.0",
-    "supertest": "^1.1.0",
-    "trailpack-core": "^1.0.0-beta-1",
-    "trailpack-footprints": "^1.0.0-beta-3",
-    "trailpack-router": "^1.0.0-beta-1",
-    "trailpack-waterline": "^1.0.0-alpha-6",
-    "trails": "^1.0.0-beta-1",
-    "trails-model": "^1.0.0-beta-1",
-    "waterline-sqlite3": "^1.0.0"
+    "eslint": "^2.13.1",
+    "eslint-config-trails": "^1.0.7",
+    "mocha": "^2.5.3",
+    "smokesignals": "^1.2.2",
+    "supertest": "^1.2.0",
+    "trailpack-core": "^1.0.1",
+    "trailpack-footprints": "^1.0.1",
+    "trailpack-router": "^1.0.8",
+    "trailpack-waterline": "^1.0.0-beta-1",
+    "trails": "^1.0.4",
+    "trails-model": "^1.0.0-beta-2",
+    "waterline-sqlite3": "^1.0.3"
   },
   "eslintConfig": {
     "extends": "trails"
