@@ -16,7 +16,8 @@
     "hapi",
     "hapijs",
     "server",
-    "trailpack"
+    "trailpack",
+    "microservices"
   ],
   "author": "Trails.js Team <hello@trailsjs.io>",
   "license": "MIT",
@@ -31,24 +32,20 @@
     "inert": "^3.2.0",
     "joi": "^8.0.5",
     "lodash": "^4.2.0",
-    "trailpack": "^1.0.0-beta-1",
+    "trailpack": "^2",
     "trailpack-webserver": "^1.0.0-alpha-1",
-    "trails-controller": "^1.0.0-beta-1",
-    "trails-policy": "^1.0.2",
     "vision": "^4.0.1"
   },
   "devDependencies": {
     "eslint": "^2.0.0",
-    "eslint-config-trails": "^1.0.3",
+    "eslint-config-trails": "^2",
     "mocha": "^2.3.4",
-    "smokesignals": "^1.0.0",
+    "smokesignals": "^2",
     "supertest": "^1.1.0",
-    "trailpack-core": "^1.0.0-beta-1",
     "trailpack-footprints": "^1.0.0-beta-3",
-    "trailpack-router": "^1.0.0-beta-1",
+    "trailpack-router": "^2",
     "trailpack-waterline": "^1.0.0-alpha-6",
-    "trails": "^1.0.0-beta-1",
-    "trails-model": "^1.0.0-beta-1",
+    "trails": "^2",
     "waterline-sqlite3": "^1.0.0"
   },
   "eslintConfig": {
