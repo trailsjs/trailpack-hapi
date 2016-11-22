@@ -69,7 +69,6 @@ const App = {
     main: {
       packs: [
         smokesignals.Trailpack,
-        require('trailpack-core'),
         require('trailpack-router'),
         require('trailpack-footprints'),
         require('trailpack-waterline'),
