@@ -33,7 +33,7 @@
     "joi": "^8.0.5",
     "lodash": "^4.2.0",
     "trailpack": "^2",
-    "trailpack-webserver": "^1.0.0-alpha-1",
+    "trailpack-webserver": "^1.0.0",
     "vision": "^4.0.1"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
     "trailpack-footprints": "^1.0.0-beta-3",
     "trailpack-router": "^2",
     "trailpack-waterline": "^1.0.0-alpha-6",
-    "trails": "v2-dev",
+    "trails": "v2-latest",
     "waterline-sqlite3": "^1.0.0"
   },
   "eslintConfig": {
