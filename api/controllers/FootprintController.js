@@ -2,7 +2,7 @@
 
 const _ = require('lodash')
 const Boom = require('boom')
-const Controller = require('trails-controller')
+const Controller = require('trails/controller')
 
 /**
  * Footprint Controller
@@ -64,16 +64,17 @@ module.exports = class FootprintController extends Controller {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.hapi.getOptionsFromQuery(request.query)
     const criteria = this.app.packs.hapi.getCriteriaFromQuery(request.query)
+    const params = request.params
 
     this.log.debug('[FootprintController] (update) model =',
     request.params.model, ', criteria =', request.query, request.params.id,
       ', values = ', request.payload)
 
     if (request.params.id) {
-      reply(FootprintService.update(request.params.model, request.params.id, request.payload, options))
+      reply(FootprintService.update(params.model, params.id, request.payload, options))
     }
     else {
-      reply(FootprintService.update(request.params.model, criteria, request.payload, options))
+      reply(FootprintService.update(params.model, criteria, request.payload, options))
     }
   }
 
@@ -111,7 +112,9 @@ module.exports = class FootprintController extends Controller {
       parentModel, '->', childAttribute, ', payload =', payload,
       'options =', options)
 
-    reply(FootprintService.createAssociation(parentModel, parentId, childAttribute, payload, options))
+    reply(
+      FootprintService.createAssociation(parentModel, parentId, childAttribute, payload, options)
+    )
   }
 
   /**
