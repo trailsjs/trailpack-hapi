@@ -85,7 +85,10 @@ const App = {
     views: {
 
     },
-    routes: [ ]
+    routes: [ ],
+    log: {
+      logger: new smokesignals.Logger('info')
+    }
   }
 }
 _.defaultsDeep(App, smokesignals.FailsafeConfig)
