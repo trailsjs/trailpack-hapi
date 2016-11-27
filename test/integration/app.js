@@ -68,15 +68,11 @@ const App = {
     },
     main: {
       packs: [
-        smokesignals.Trailpack,
         require('trailpack-router'),
         require('trailpack-footprints'),
         require('trailpack-waterline'),
         require('../../') // trailpack-hapi
-      ],
-      paths: {
-        root: __dirname + '../'
-      }
+      ]
     },
     web: {
       port: 3000,
@@ -87,7 +83,7 @@ const App = {
     },
     routes: [ ],
     log: {
-      logger: new smokesignals.Logger('info')
+      logger: new smokesignals.Logger('silent')
     }
   }
 }
