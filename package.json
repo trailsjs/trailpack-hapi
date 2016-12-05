@@ -50,5 +50,8 @@
   },
   "eslintConfig": {
     "extends": "trails"
+  },
+  "publishConfig": {
+    "tag": "next"
   }
 }
