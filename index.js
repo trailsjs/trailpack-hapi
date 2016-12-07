@@ -2,7 +2,7 @@
 
 const Hapi = require('hapi')
 const _ = require('lodash')
-const WebServerTrailpack = require('trailpack-webserver')
+const ServerTrailpack = require('trailpack/server')
 const lib = require('./lib')
 
 /**
@@ -13,7 +13,7 @@ const lib = require('./lib')
  *
  * Bind application routes to Hapi.js (from trailpack-router)
  */
-module.exports = class HapiTrailpack extends WebServerTrailpack {
+module.exports = class HapiTrailpack extends ServerTrailpack {
 
   /**
    * Ensure that config/web is valid, and that no other competing web
