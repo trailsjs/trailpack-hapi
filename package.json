@@ -43,7 +43,7 @@
     "supertest": "^1.1.0",
     "trailpack-footprints": "^2",
     "trailpack-router": "v2-latest",
-    "trailpack-waterline": "^1.0.0-alpha-6",
+    "trailpack-waterline": "v2-latest",
     "trails": "v2-latest",
     "waterline-sqlite3": "^1.0.0"
   },
