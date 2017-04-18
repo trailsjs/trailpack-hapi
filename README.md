@@ -28,11 +28,16 @@ module.exports = {
 Choose a template engine.
 
 ```js
-// config/views.js
+// config/web.js
 module.exports = {
-  engine: 'handlebars'
+  views: {
+    engines: {
+      html: require('some-view-engine')
+    },
+    path: 'views'
+  }
 }
-```
+``````
 
 Then simply write your views in a directory called 'templates'! This feature has been tested with Jade and Handlebars.
 
@@ -85,19 +90,6 @@ module.exports = {
   onPluginsLoaded: function (err) {
     // Note that `this` is Trails `app` instance
     this.packs.hapi.server.auth.strategy('default', 'hawk', { getCredentialsFunc: getCredentials });
-  }
-}
-```
-
-#### Hapi Views
-```js
-// config/web.js
-module.exports = {
-  views: {
-    engines: {
-      html: require('some-view-engine')
-    },
-    path: 'views'
   }
 }
 ```
