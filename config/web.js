@@ -21,11 +21,17 @@ module.exports = {
     {
       type: 'onPreResponse',
       method (request, reply) {
-        if (!request.response.header) return reply.continue()
-
         const trailsVersion = this.app['_trails'].version
         const nodeVersion = this.app.versions.node
-        request.response.header('X-Powered-By', `Node/${nodeVersion} Trails/${trailsVersion}`)
+        const poweredBy = `Node/${nodeVersion} Trails/${trailsVersion}`
+
+        if (request.response.isBoom) {
+          request.response.output.headers['X-Powered-By'] = poweredBy
+        }
+        else if (request.response.header) {
+          request.response.header('X-Powered-By', poweredBy)
+        }
+
         reply.continue()
       }
     }

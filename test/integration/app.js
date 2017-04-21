@@ -2,7 +2,7 @@
 
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
-const Model = require('trails-model')
+const Model = require('trails/model')
 
 const App = {
   pkg: {
@@ -68,16 +68,11 @@ const App = {
     },
     main: {
       packs: [
-        smokesignals.Trailpack,
-        require('trailpack-core'),
         require('trailpack-router'),
         require('trailpack-footprints'),
         require('trailpack-waterline'),
         require('../../') // trailpack-hapi
-      ],
-      paths: {
-        root: __dirname + '../'
-      }
+      ]
     },
     web: {
       port: 3000,
@@ -86,7 +81,10 @@ const App = {
     views: {
 
     },
-    routes: [ ]
+    routes: [ ],
+    log: {
+      logger: new smokesignals.Logger('silent')
+    }
   }
 }
 _.defaultsDeep(App, smokesignals.FailsafeConfig)

@@ -1,6 +1,6 @@
 {
   "name": "trailpack-hapi",
-  "version": "1.0.4",
+  "version": "2.2.0",
   "description": "Hapi.js Trailpack. This pack binds the routes compiled in trailpack-router to a Hapi Server.",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,8 @@
     "hapi",
     "hapijs",
     "server",
-    "trailpack"
+    "trailpack",
+    "microservices"
   ],
   "author": "Trails.js Team <hello@trailsjs.io>",
   "license": "MIT",
@@ -25,33 +26,31 @@
   },
   "homepage": "https://github.com/trailsjs/trailpack-hapi#readme",
   "dependencies": {
-    "boom": "^3.1.1",
+    "boom": "^4.2.0",
     "good": "^7.0.0",
-    "hapi": "^13.3.0",
-    "inert": "^3.2.0",
-    "joi": "^8.0.5",
-    "lodash": "^4.2.0",
-    "trailpack": "^1.0.0-beta-1",
-    "trailpack-webserver": "^1.0.0-alpha-1",
-    "trails-controller": "^1.0.0-beta-1",
-    "trails-policy": "^1.0.2",
+    "hapi": "^15.2.0",
+    "inert": "^4.0.2",
+    "joi": "^10.0.1",
+    "lodash": "^4.17.0",
+    "trailpack": "v2-latest",
     "vision": "^4.0.1"
   },
   "devDependencies": {
     "eslint": "^2.0.0",
-    "eslint-config-trails": "^1.0.3",
+    "eslint-config-trails": "^2",
     "mocha": "^2.3.4",
-    "smokesignals": "^1.0.0",
+    "smokesignals": "v2-latest",
     "supertest": "^1.1.0",
-    "trailpack-core": "^1.0.0-beta-1",
-    "trailpack-footprints": "^1.0.0-beta-3",
-    "trailpack-router": "^1.0.0-beta-1",
-    "trailpack-waterline": "^1.0.0-alpha-6",
-    "trails": "^1.0.0-beta-1",
-    "trails-model": "^1.0.0-beta-1",
+    "trailpack-footprints": "^2",
+    "trailpack-router": "v2-latest",
+    "trailpack-waterline": "v2-latest",
+    "trails": "v2-latest",
     "waterline-sqlite3": "^1.0.0"
   },
   "eslintConfig": {
     "extends": "trails"
+  },
+  "publishConfig": {
+    "tag": "next"
   }
 }
