@@ -44,7 +44,8 @@
     "trailpack-footprints": "^2",
     "trailpack-router": "v2-latest",
     "trailpack-waterline": "v2-latest",
-    "trails": "v2-latest"
+    "trails": "v2-latest",
+    "waterline-postgresql": "^0.14.8"
   },
   "eslintConfig": {
     "extends": "trails"

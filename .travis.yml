@@ -5,6 +5,9 @@ node_js:
 - 6
 - 7
 
+services:
+  - postgresql
+
 notifications:
   email: false
   webhooks:
