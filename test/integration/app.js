@@ -39,7 +39,7 @@ const App = {
     database: {
       stores: {
         teststore: {
-          adapter: require('waterline-sqlite3')
+          adapter: require('waterline-postgresql')
         }
       },
       models: {

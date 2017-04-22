@@ -16,7 +16,7 @@ describe('Basic Tests', () => {
         .get('/user')
         .expect(200)
         .end((err, res) => {
-          console.log(res.headers)
+          // console.log(res.headers)
           assert(/^Node.+Trails/.test(res.headers['x-powered-by']))
           done(err)
         })
