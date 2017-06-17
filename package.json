@@ -32,25 +32,22 @@
     "inert": "^4.2.0",
     "joi": "^10.4.1",
     "lodash": "^4.17.0",
-    "trailpack": "v2-latest",
+    "trailpack": "next",
     "vision": "^4.1.1"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-trails": "^2.0.8",
+    "eslint": "^3",
+    "eslint-config-trails": "^3",
     "mocha": "^3.2.0",
-    "smokesignals": "v2-latest",
+    "smokesignals": "^3",
     "supertest": "^3.0.0",
-    "trailpack-footprints": "^2",
-    "trailpack-router": "v2-latest",
-    "trailpack-waterline": "v2-latest",
-    "trails": "v2-latest",
+    "trailpack-footprints": "^3",
+    "trailpack-router": "^3",
+    "trailpack-waterline": "^3",
+    "trails": "next",
     "waterline-postgresql": "^0.14.8"
   },
   "eslintConfig": {
     "extends": "trails"
-  },
-  "publishConfig": {
-    "tag": "next"
   }
 }
