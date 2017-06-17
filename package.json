@@ -1,6 +1,6 @@
 {
   "name": "trailpack-hapi",
-  "version": "2.2.0",
+  "version": "3.0.0-pre.1",
   "description": "Hapi.js Trailpack. This pack binds the routes compiled in trailpack-router to a Hapi Server.",
   "main": "index.js",
   "scripts": {
