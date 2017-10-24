@@ -1,5 +1,3 @@
-'use strict'
-
 const Hapi = require('hapi')
 const _ = require('lodash')
 const ServerTrailpack = require('trailpack/server')
@@ -25,21 +23,23 @@ module.exports = class HapiTrailpack extends ServerTrailpack {
   }
 
   configure () {
-    const webConfig = this.app.config.web
+    this.webConfig = {
+      plugins: this.app.config.get('web.plugins'),
+      extensions: this.app.config.get('web.extensions'),
+      options: this.app.config.get('web.options'),
+      server: 'hapi',
+      views: Object.assign(
+        { relativeTo: this.app.config.get('main.paths.root') },
+        this.app.config.get('web.views')
+      )
+    }
 
-    webConfig.plugins || (webConfig.plugins = [ ])
-    webConfig.extensions || (webConfig.extensions = [ ])
-    webConfig.options || (webConfig.options = { })
-
-    webConfig.server = 'hapi'
-    webConfig.views.relativeTo = this.app.config.main.paths.root
-
-    _.defaultsDeep(webConfig.options, {
-      host: webConfig.host,
-      port: webConfig.port,
+    _.defaultsDeep(this.webConfig.options, {
+      host: this.app.config.get('web.host'),
+      port: this.app.config.get('web.port'),
       routes: {
         files: {
-          relativeTo: webConfig.views.relativeTo
+          relativeTo: this.webConfig.views.relativeTo
         }
       }
     })
@@ -49,8 +49,6 @@ module.exports = class HapiTrailpack extends ServerTrailpack {
    * Start Hapi Server
    */
   initialize () {
-    this.webConfig = _.cloneDeep(this.app.config.web)
-
     this.server = new Hapi.Server()
     this.server.connection(this.webConfig.options)
 

@@ -1,8 +1,5 @@
-'use strict'
-
 const _ = require('lodash')
 const Boom = require('boom')
-const Controller = require('trails/controller')
 
 /**
  * Footprint Controller
