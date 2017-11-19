@@ -1,0 +1,6 @@
+{
+  "extends": "trails",
+  "rules": {
+    "no-process-env": 0
+  }
+}
