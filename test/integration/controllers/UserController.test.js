@@ -14,8 +14,6 @@ describe('UserController', () => {
         .get('/user')
         .expect(200)
         .end((err, res) => {
-          console.log('response error', err)
-          console.log('response', res)
           assert(/^Node.+Trails/.test(res.headers['x-powered-by']))
           done(err)
         })
