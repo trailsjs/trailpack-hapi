@@ -5,7 +5,7 @@ node_js:
 - 9
 
 addons:
-  postgresql: "9.4"
+  postgresql: "9.6"
 
 notifications:
   email: false
