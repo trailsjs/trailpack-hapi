@@ -1,9 +1,7 @@
-'use strict'
-
 const assert = require('assert')
 const supertest = require('supertest')
 
-describe('Basic Tests', () => {
+describe('UserController', () => {
   let request
   before(() => {
     request = supertest('http://localhost:3000')
@@ -16,7 +14,8 @@ describe('Basic Tests', () => {
         .get('/user')
         .expect(200)
         .end((err, res) => {
-          // console.log(res.headers)
+          console.log('response error', err)
+          console.log('response', res)
           assert(/^Node.+Trails/.test(res.headers['x-powered-by']))
           done(err)
         })

@@ -1,16 +1,18 @@
-'use strict'
-
-const _ = require('lodash')
 const smokesignals = require('smokesignals')
-const Model = require('trails/model')
+const Model = require('trails/lib/Model')
 
-const App = {
+const App = Object.assign(smokesignals.FailsafeConfig, {
   pkg: {
     name: 'hapi-trailpack-test'
   },
   api: {
     models: {
       User: class User extends Model {
+        static config () {
+          return {
+            store: 'teststore'
+          }
+        }
         static schema () {
           return {
             name: {
@@ -24,6 +26,11 @@ const App = {
         }
       },
       Role: class Role extends Model {
+        static config () {
+          return {
+            store: 'teststore'
+          }
+        }
         static schema () {
           return {
             name: 'string',
@@ -36,15 +43,14 @@ const App = {
     }
   },
   config: {
-    database: {
-      stores: {
-        teststore: {
-          adapter: require('waterline-postgresql')
+    stores: {
+      teststore: {
+        migrate: 'drop',
+        adapter: require('waterline-postgresql'),
+        connection: {
+          host: 'localhost',
+          port: '5432'
         }
-      },
-      models: {
-        defaultStore: 'teststore',
-        migrate: 'drop'
       }
     },
     footprints: {
@@ -76,17 +82,13 @@ const App = {
     },
     web: {
       port: 3000,
-      host: 'localhost'
-    },
-    views: {
-
+      host: '0.0.0.0'
     },
     routes: [ ],
     log: {
-      logger: new smokesignals.Logger('silent')
+      logger: new smokesignals.Logger('error')
     }
   }
-}
-_.defaultsDeep(App, smokesignals.FailsafeConfig)
+})
 
 module.exports = App
