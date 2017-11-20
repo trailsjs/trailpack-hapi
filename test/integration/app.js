@@ -75,14 +75,14 @@ const App = Object.assign(smokesignals.FailsafeConfig, {
     main: {
       packs: [
         require('trailpack-router'),
-        //require('trailpack-footprints'),
-        //require('trailpack-waterline'),
+        require('trailpack-footprints'),
+        require('trailpack-waterline'),
         require('../../') // trailpack-hapi
       ]
     },
     web: {
       port: 3000,
-      //host: '0.0.0.0'
+      host: '0.0.0.0'
     },
     routes: [ ],
     log: {

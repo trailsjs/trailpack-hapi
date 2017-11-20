@@ -1,5 +1,4 @@
 const Hapi = require('hapi')
-const _ = require('lodash')
 const ServerTrailpack = require('trailpack/server')
 const lib = require('./lib')
 
@@ -24,17 +23,17 @@ module.exports = class HapiTrailpack extends ServerTrailpack {
 
   configure () {
     this.webConfig = {
-      plugins: this.app.config.get('web.plugins'),
+      plugins: this.app.config.get('web.plugins') || [ ],
       extensions: this.app.config.get('web.extensions'),
       options: this.app.config.get('web.options'),
       server: 'hapi',
-      views: Object.assign(
-        { relativeTo: this.app.config.get('main.paths.root') },
-        this.app.config.get('web.views')
-      )
+      views: Object.assign({
+        relativeTo: this.app.config.get('main.paths.root'),
+        engines: { }
+      }, this.app.config.get('web.views'))
     }
 
-    _.defaultsDeep(this.webConfig.options, {
+    this.webConfig.options = Object.assign({
       host: this.app.config.get('web.host'),
       port: this.app.config.get('web.port'),
       routes: {
@@ -42,15 +41,15 @@ module.exports = class HapiTrailpack extends ServerTrailpack {
           relativeTo: this.webConfig.views.relativeTo
         }
       }
-    })
+    }, this.app.config.get('web.options'))
   }
 
   /**
    * Start Hapi Server
    */
-  initialize () {
+  async initialize () {
     this.server = new Hapi.Server()
-    this.server.connection(this.webConfig.options)
+    this.server.connection(Object.assign({ }, this.webConfig.options))
 
     return lib.Server.registerPlugins(this.webConfig, this.server, this.app)
       .then(() => {
@@ -65,7 +64,7 @@ module.exports = class HapiTrailpack extends ServerTrailpack {
       })
   }
 
-  unload () {
+  async unload () {
     this.server.stop()
   }
 
