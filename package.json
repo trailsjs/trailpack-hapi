@@ -28,7 +28,7 @@
   "dependencies": {
     "boom": "^7",
     "good": "^7.1.0",
-    "hapi": "^16",
+    "hapi": "^16.6",
     "inert": "^4",
     "joi": "^13",
     "lodash": "^4.17.0",
