@@ -1,7 +1,3 @@
-'use strict'
-
-const Controller = require('trails/controller')
-
 /**
  * @module DefaultController
  *
