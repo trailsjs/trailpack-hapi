@@ -22,46 +22,30 @@ module.exports = class HapiTrailpack extends ServerTrailpack {
   }
 
   configure () {
-    this.webConfig = {
-      plugins: this.app.config.get('web.plugins') || [ ],
-      extensions: this.app.config.get('web.extensions'),
-      options: this.app.config.get('web.options'),
-      server: 'hapi',
-      views: Object.assign({
-        relativeTo: this.app.config.get('main.paths.root'),
-        engines: { }
-      }, this.app.config.get('web.views'))
-    }
+    this.app.config.set('web.server', 'hapi')
+    this.app.config.set('web.routes.files.relativeTo', this.app.config.get('main.paths.root'))
 
-    this.webConfig.options = Object.assign({
+    this.serverConfig = {
       host: this.app.config.get('web.host'),
       port: this.app.config.get('web.port'),
-      routes: {
-        files: {
-          relativeTo: this.webConfig.views.relativeTo
-        }
-      }
-    }, this.app.config.get('web.options'))
+      routes: this.app.config.get('web.routes')
+    }
   }
 
   /**
    * Start Hapi Server
    */
   async initialize () {
-    this.server = new Hapi.Server()
-    this.server.connection(Object.assign({ }, this.webConfig.options))
+    this.server = new Hapi.Server(this.serverConfig)
+    const { server, app } = this
 
-    return lib.Server.registerPlugins(this.webConfig, this.server, this.app)
-      .then(() => {
-        lib.Server.registerRoutes(this.webConfig, this.server, this.app)
-        lib.Server.registerViews(this.webConfig, this.server, this.app)
-        lib.Server.registerExtensions(this.webConfig, this.server, this.app)
-        lib.Server.nativeServer = this.server
-        return this.server.start()
-      })
-      .then(() => {
-        this.app.emit('webserver:http:ready', lib.Server.nativeServer.listener)
-      })
+    await lib.Server.registerPlugins(server, app)
+    lib.Server.registerRoutes(this.app.config.web, server, app)
+    lib.Server.registerViews(this.app.config.web, server, app)
+    lib.Server.registerExtensions(this.app.config.web, server, app)
+    await this.server.start()
+
+    this.app.emit('webserver:http:ready', this.server.listener)
   }
 
   async unload () {

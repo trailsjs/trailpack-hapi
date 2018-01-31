@@ -26,18 +26,14 @@
   },
   "homepage": "https://github.com/trailsjs/trailpack-hapi#readme",
   "dependencies": {
-    "boom": "^7",
-    "good": "^7.1.0",
-    "hapi": "^16.6",
-    "inert": "^4",
-    "joi": "^13",
-    "lodash": "^4.17.0",
+    "hapi": "^17",
     "trailpack": "^3",
-    "vision": "^4"
+    "vision": "^5.3.1"
   },
   "devDependencies": {
     "eslint": "^3",
     "eslint-config-trails": "^3",
+    "inert": "^5",
     "mocha": "^4",
     "smokesignals": "^3",
     "supertest": "^3.0.0",

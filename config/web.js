@@ -1,4 +1,8 @@
 module.exports = {
+  routes: {
+    files: {
+    }
+  },
   extensions: [
     {
       type: 'onPreResponse',
@@ -14,7 +18,7 @@ module.exports = {
           request.response.header('X-Powered-By', poweredBy)
         }
 
-        reply.continue()
+        return reply.continue
       }
     }
   ]
