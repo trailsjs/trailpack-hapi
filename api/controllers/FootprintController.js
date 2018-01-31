@@ -15,7 +15,7 @@ module.exports = class FootprintController extends Controller {
   /**
    * @see FootprintService.create
    */
-  create (request, reply) {
+  create (request) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.hapi.getOptionsFromQuery(request.query)
 
@@ -23,13 +23,13 @@ module.exports = class FootprintController extends Controller {
       request.params.model, ', payload =', request.payload,
       'options =', options)
 
-    reply(FootprintService.create(request.params.model, request.payload, options))
+    return FootprintService.create(request.params.model, request.payload, options)
   }
 
   /**
    * @see FootprintService.find
    */
-  find (request, reply) {
+  find (request) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.hapi.getOptionsFromQuery(request.query)
     const criteria = this.app.packs.hapi.getCriteriaFromQuery(request.query)
@@ -46,18 +46,18 @@ module.exports = class FootprintController extends Controller {
       response = FootprintService.find(request.params.model, criteria, options)
     }
 
-    reply(response
+    return response
       .then(result => {
         if (!result) return Boom.notFound()
 
         return result
-      }))
+      })
   }
 
   /**
    * @see FootprintService.update
    */
-  update (request, reply) {
+  update (request) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.hapi.getOptionsFromQuery(request.query)
     const criteria = this.app.packs.hapi.getCriteriaFromQuery(request.query)
@@ -68,17 +68,17 @@ module.exports = class FootprintController extends Controller {
       ', values = ', request.payload)
 
     if (request.params.id) {
-      reply(FootprintService.update(params.model, params.id, request.payload, options))
+      return FootprintService.update(params.model, params.id, request.payload, options)
     }
     else {
-      reply(FootprintService.update(params.model, criteria, request.payload, options))
+      return FootprintService.update(params.model, criteria, request.payload, options)
     }
   }
 
   /**
    * @see FootprintService.destroy
    */
-  destroy (request, reply) {
+  destroy (request) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.hapi.getOptionsFromQuery(request.query)
     const criteria = this.app.packs.hapi.getCriteriaFromQuery(request.query)
@@ -87,17 +87,17 @@ module.exports = class FootprintController extends Controller {
       request.params.model, ', query =', request.query)
 
     if (request.params.id) {
-      reply(FootprintService.destroy(request.params.model, request.params.id, options))
+      return FootprintService.destroy(request.params.model, request.params.id, options)
     }
     else {
-      reply(FootprintService.destroy(request.params.model, criteria, options))
+      return FootprintService.destroy(request.params.model, criteria, options)
     }
   }
 
   /**
    * @see FootprintService.createAssociation
    */
-  createAssociation (request, reply) {
+  createAssociation (request) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.hapi.getOptionsFromQuery(request.query)
     const parentModel = request.params.parentModel
@@ -109,15 +109,13 @@ module.exports = class FootprintController extends Controller {
       parentModel, '->', childAttribute, ', payload =', payload,
       'options =', options)
 
-    reply(
-      FootprintService.createAssociation(parentModel, parentId, childAttribute, payload, options)
-    )
+    return FootprintService.createAssociation(parentModel, parentId, childAttribute, payload, options)
   }
 
   /**
    * @see FootprintService.findAssociation
    */
-  findAssociation (request, reply) {
+  findAssociation (request) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.hapi.getOptionsFromQuery(request.query)
     const criteria = this.app.packs.hapi.getCriteriaFromQuery(request.query)
@@ -131,21 +129,21 @@ module.exports = class FootprintController extends Controller {
       ', criteria =', request.query)
 
     if (childId) {
-      reply(FootprintService.findAssociation(
+      return FootprintService.findAssociation(
         parentModel, parentId, childAttribute, childId, _.extend({ findOne: true }, options)
-      ))
+      )
     }
     else {
-      reply(FootprintService.findAssociation(
+      return FootprintService.findAssociation(
         parentModel, parentId, childAttribute, criteria, options
-      ))
+      )
     }
   }
 
   /**
    * @see FootprintService.updateAssociation
    */
-  updateAssociation (request, reply) {
+  updateAssociation (request) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.hapi.getOptionsFromQuery(request.query)
     const criteria = this.app.packs.hapi.getCriteriaFromQuery(request.query)
@@ -159,15 +157,15 @@ module.exports = class FootprintController extends Controller {
       ', criteria =', request.query)
 
     if (childId) {
-      reply(FootprintService.updateAssociation(
+      return FootprintService.updateAssociation(
         parentModel, parentId, childAttribute, childId,
         request.payload, _.extend({ findOne: true }, options)
-      ))
+      )
     }
     else {
-      reply(FootprintService.updateAssociation(
+      return FootprintService.updateAssociation(
         parentModel, parentId, childAttribute, criteria, request.payload
-      ))
+      )
     }
   }
 
@@ -175,7 +173,7 @@ module.exports = class FootprintController extends Controller {
    * @see FootprintService.destroyAssociation
    * @return the id of the destroyed record
    */
-  destroyAssociation (request, reply) {
+  destroyAssociation (request) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.hapi.getOptionsFromQuery(request.query)
     const criteria = this.app.packs.hapi.getCriteriaFromQuery(request.query)
@@ -198,13 +196,12 @@ module.exports = class FootprintController extends Controller {
         parentModel, parentId, childAttribute, criteria, options)
     }
 
-    reply(response
+    return response
       .then(result => {
         if (!result) return Boom.notFound()
 
         return result
       })
-    )
   }
 }
 
